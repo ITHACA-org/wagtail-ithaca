@@ -1,0 +1,13 @@
+{% load wagtailimages_tags %}
+
+<figure>
+  {% image self.image width-1200 as post_img %}
+  <img alt="{{ post_img.alt }}" src="{{ post_img.url }}" class="img-fluid">
+  <figcaption>
+    <i class="far fa-image fa-sm"></i>
+    {{ self.caption }}
+    {% if self.attribution %}
+    - {{ self.attribution }}
+    {% endif %}
+  </figcaption>
+</figure>
