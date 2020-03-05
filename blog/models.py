@@ -66,6 +66,13 @@ class BlogTagIndexPage(Page):
 class BlogPage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
+    feed_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
     body = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
@@ -90,7 +97,26 @@ class BlogPage(Page):
         ], heading="Blog information"),
         FieldPanel('intro'),
         FieldPanel('body'),
+        InlinePanel('related_links', label="Related links"),
         InlinePanel('gallery_images', label="Gallery images"),
+    ]
+
+    promote_panels = [
+        MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+        ImageChooserPanel('feed_image'),
+    ]
+
+    parent_page_types = ['blog.BlogIndexPage']
+    subpage_types = []
+
+class BlogPageRelatedLink(Orderable):
+    page = ParentalKey(BlogPage, on_delete=models.CASCADE, related_name='related_links')
+    name = models.CharField(max_length=255)
+    url = models.URLField()
+
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('url'),
     ]
 
 class BlogPageGalleryImage(Orderable):
