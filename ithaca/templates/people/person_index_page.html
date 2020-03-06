@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+  {{ page.body }}
+  {% if self.senior_management.all %}
+    {{ page.senior_management_intro }}
+    {{ senior.title }}, {% if senior.role %}{{ senior.role }}{% endif %}
+  {% endif %}
+  {% if self.people.all %}
+    {% for person in self.people.all %}
+      {{ person.title }}, {{ person.role }}
+    {% endfor %}
+  {% endif %}
+{% endblock content %}

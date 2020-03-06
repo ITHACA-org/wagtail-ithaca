@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+  {{ page.first_name }} {{ page.last_name }} {{ page.role }}
+{% endblock content %}
