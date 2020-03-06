@@ -6,10 +6,6 @@ from wagtail.core.blocks import (
 
 
 class ImageBlock(StructBlock):
-    """
-    Custom `StructBlock` for utilizing images with associated caption and
-    attribution data
-    """
     image = ImageChooserBlock(required=True)
     caption = CharBlock(required=False)
     attribution = CharBlock(required=False)
@@ -20,9 +16,6 @@ class ImageBlock(StructBlock):
 
 
 class HeadingBlock(StructBlock):
-    """
-    Custom `StructBlock` that allows the user to select h2 - h4 sizes for headers
-    """
     heading_text = CharBlock(classname="title", required=True)
     size = ChoiceBlock(choices=[
         ('', 'Select a header size'),
@@ -48,6 +41,7 @@ class BlockQuote(StructBlock):
         icon = "fa-quote-left"
         template = "blocks/blockquote.html"
 
+
 class CodeBlock(StructBlock):
     """
     Custom `StructBlock` that allows the user to insert code
@@ -58,7 +52,7 @@ class CodeBlock(StructBlock):
         icon = "fa-code"
         template = "blocks/code_block.html"
 
-# StreamBlocks
+
 class BaseStreamBlock(StreamBlock):
     """
     Define the custom blocks that `StreamField` will utilize
@@ -71,10 +65,10 @@ class BaseStreamBlock(StreamBlock):
     image_block = ImageBlock()
     block_quote = BlockQuote()
     code_block = CodeBlock(
-        help_text='Insert the code',
+        help_text='Insert code',
         icon="fa-code",
         template="blocks/code_block.html")
     embed_block = EmbedBlock(
-        help_text='Insert an embed URL e.g https://www.youtube.com/embed/SGJFWirQ3ks',
+        help_text='Insert an embed URL e.g https://www.youtube.com/watch?v=OrOE2y0Fj2w',
         icon="fa-s15",
         template="blocks/embed_block.html")
