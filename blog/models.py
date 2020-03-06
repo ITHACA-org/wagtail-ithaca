@@ -9,6 +9,7 @@ from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.search import index
 
 from wagtail.snippets.models import register_snippet
@@ -63,6 +64,20 @@ class BlogTagIndexPage(Page):
         context['blogpages'] = blogpages
         return context
 
+
+class BlogPageAuthor(Orderable):
+    page = ParentalKey('blog.BlogPage', related_name='authors')
+    author = models.ForeignKey(
+        'people.Author',
+        on_delete=models.CASCADE,
+        related_name='+',
+    )
+
+    panels = [
+        SnippetChooserPanel('author'),
+    ]
+
+
 class BlogPage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
@@ -89,6 +104,10 @@ class BlogPage(Page):
         index.SearchField('body'),
     ]
 
+    @property
+    def has_authors(self):
+        return self.authors.exists()
+
     content_panels = Page.content_panels + [
         MultiFieldPanel([
             FieldPanel('date'),
@@ -97,6 +116,7 @@ class BlogPage(Page):
         ], heading="Blog information"),
         FieldPanel('intro'),
         FieldPanel('body'),
+        InlinePanel('authors', label="Author"),
         InlinePanel('related_links', label="Related links"),
         InlinePanel('gallery_images', label="Gallery images"),
     ]
@@ -108,6 +128,7 @@ class BlogPage(Page):
 
     parent_page_types = ['blog.BlogIndexPage']
     subpage_types = []
+
 
 class BlogPageRelatedLink(Orderable):
     page = ParentalKey(BlogPage, on_delete=models.CASCADE, related_name='related_links')
