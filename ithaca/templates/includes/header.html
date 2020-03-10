@@ -1,0 +1,26 @@
+{% load navigation_tags %}
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/"><img src="/media/images/logo-ithaca-fw.original.png" alt="ITHACA"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <div id="nav-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+    {% block main_navigation %}
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav ml-auto topnav">
+        {# main_menu is defined in base/templatetags/navigation_tags.py #}
+        {% get_site_root as site_root %}
+        {% top_menu parent=site_root calling_page=self %}
+      <!--  <li class="nav-item search">
+          <a href="#" class="nav-link" data-toggle="modal" data-target="#searchModal"><i class="fas fa-search"></i></a>
+        </li> -->
+      </ul>
+    </div>
+    {% endblock %}
+  </nav>
+</header>
