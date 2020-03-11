@@ -9,13 +9,13 @@
         <h4>Showing pages tagged "{{ request.GET.tag }}"</h4>
     {% endif %}
 
-    {% for blogpage in blogpages %}
+    {% for post in posts %}
 
           <p>
-              <strong><a href="{% pageurl blogpage %}">{{ blogpage.title }}</a></strong><br />
-              <small>Revised: {{ blogpage.latest_revision_created_at }}</small><br />
-              {% if blogpage.author %}
-                By {{ blogpage.author.profile }}
+              <strong><a href="{% pageurl post %}">{{ post.title }}</a></strong><br />
+              <small>Revised: {{ post.latest_revision_created_at }}</small><br />
+              {% if post.author %}
+                By {{ post.author.profile }}
               {% endif %}
           </p>
 
