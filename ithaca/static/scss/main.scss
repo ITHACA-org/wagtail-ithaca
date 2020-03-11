@@ -1,2 +1,27 @@
 @import "bootstrap";
 @import "navbar";
+
+.home {
+  .jumbotron {
+    border-radius: 0;
+    color: white;
+    padding: 6rem 1rem;
+    text-align: center;
+    h1 {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .lead {
+      margin: 2rem 0;
+      a {
+        color: white;
+        border-bottom: 1px solid white;
+        padding-bottom: 0.5rem;
+        &:hover {
+          border-bottom: 2px solid white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

@@ -33,6 +33,9 @@
             {% include "includes/header.html" with parent=site_root calling_page=self %}
         {% endblock header %}
 
+        {% block head-extra %}
+        {% endblock head-extra %}
+
         {% block content %}{% endblock %}
 
         <script type="text/javascript" src="{% static 'js/jquery.slim.min.js' %}"></script>

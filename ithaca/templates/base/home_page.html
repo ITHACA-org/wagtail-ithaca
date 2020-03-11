@@ -1,8 +1,20 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}home{% endblock %}
+
+{% block head-extra %}
+  {% image page.image fill-1920x600 as image %}
+  <div class="jumbotron" style="background-image:url('{{ image.url }}')">
+    <h1 class="display-4">{{ page.hero_text }}</h1>
+    {% if page.hero_cta_link %}
+    <p class="lead"><a href="{% pageurl page.hero_cta_link %}">{{ page.hero_cta }}</a></p>
+    {% else %}
+      {{ page.hero_cta }}
+    {% endif %}
+  </div>
+{% endblock %}
 
 {% block content %}
   {{ page.body }}
