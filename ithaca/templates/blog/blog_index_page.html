@@ -33,7 +33,7 @@
               <div class="col-md-7">
                 <div class="card-body">
                   <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text">{{ post.intro|truncatewords:15 }}</p>
                   <p class="card-text">
                     <small class="text-muted">
                       {% for author in post.authors.all %}
@@ -55,7 +55,7 @@
             </a>
             <div class="card-body">
               <h4><a href="{% pageurl post %}">{{ post.title }}</a></h4>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text">{{ post.intro|truncatewords:15 }}</p>
               <p class="card-text">
                 <small class="text-muted">
                   {% for author in post.authors.all %}
