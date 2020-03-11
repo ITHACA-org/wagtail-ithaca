@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
 
+{% block body_class %}people{% endblock %}
+
 {% block content %}
   {{ page.body }}
   {% if self.senior_management.all %}
@@ -9,7 +11,7 @@
   {% endif %}
   {% if self.people.all %}
     {% for person in self.people.all %}
-      {{ person.title }}, {{ person.role }}
+      <a href="{{ person.slug }}">{{ person.title }}</a>, {{ person.role }}
     {% endfor %}
   {% endif %}
 {% endblock content %}
