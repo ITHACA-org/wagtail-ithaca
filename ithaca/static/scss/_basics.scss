@@ -4,3 +4,18 @@
 ::-moz-selection {
   background: $warning;
 }
+
+pre {
+  background: $gray-100;
+  border: 1px solid $gray-200;
+  border-left: 4px solid $orange;
+  color: $gray-700;
+  page-break-inside: avoid;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1rem 1.5rem;
+  display: block;
+  word-wrap: break-word;
+}
