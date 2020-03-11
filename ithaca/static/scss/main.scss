@@ -38,6 +38,26 @@ nav.navbar {
   background: white;
 }
 
+@include media-breakpoint-down(xs) {
+  header {
+    .navbar-nav {
+      margin-top: 6vw;
+    }
+    .nav-link {
+      font-size: 8vw;
+      text-align: center;
+    }
+  }
+  .jumbotron {
+    padding: 2rem;
+    h1{
+      font-size: 8vw;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+  }
+}
+
 /* Home */
 
 .home {
