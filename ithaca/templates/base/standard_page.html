@@ -3,6 +3,10 @@
 
 {% block body_class %}page{% endblock %}
 
+{% block head-extra %}
+  {% include "base/include/head-extra.html" %}
+{% endblock head-extra %}
+
 {% block content %}
   {{ page.body }}
 {% endblock content %}
