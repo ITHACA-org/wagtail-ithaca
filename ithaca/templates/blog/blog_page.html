@@ -2,29 +2,57 @@
 
 {% load wagtailcore_tags wagtailimages_tags %}
 
-{% block body_class %}blogpost{% endblock %}
+{% block body_class %}blog{% endblock %}
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
-    <p class="meta">{{ page.date }}</p>
-
-    {% with categories=page.categories.all %}
-      {% if categories %}
-          <h3>Posted in:</h3>
-          <ul>
-              {% for category in categories %}
-                  <li style="display: inline">
-                      {% image category.icon fill-32x32 style="vertical-align: middle" %}
-                      {{ category.name }}
+<main>
+  <div class="container">
+    <header>
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          {% with categories=page.categories.all %}
+            {% if categories %}
+              <ul class="categories">
+                {% for category in categories %}
+                  <li class="list-inline-item">
+                    {{ category.name }}
                   </li>
-              {% endfor %}
-          </ul>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endwith %}
+          <h1>{{ page.title }}</h1>
+          <p>
+            {% for author in page.authors.all %}
+              {{ author.author.name }}{% if not forloop.last %},&nbsp;{% endif %}
+            {% endfor %}
+            on {{ page.date }}
+          </p>
+        </div>
+      </div>
+    </header>
+    {% if page.image %}
+      {% image page.image fill-1920x300 as image %}
+      <img class="img-fluid" src="{{ image.url }}">
       {% endif %}
-    {% endwith %}
+    <section>
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <p class="lead">{{ page.intro }}</p>
+        </div>
+      </div>
+    </section>
+    <article>
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <p>{{ page.body }}</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</main>
 
-    <div class="intro">{{ page.intro }}</div>
 
-    {{ page.body|richtext }}
 
     {% for item in page.gallery_images.all %}
         <div style="float: left; margin: 10px">

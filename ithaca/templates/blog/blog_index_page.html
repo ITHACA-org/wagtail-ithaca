@@ -22,7 +22,7 @@
           <p>{{ post.date }}</p>
 
           <p>{{ post.intro }}</p>
-          {{ post.body|richtext }}
+          {{ post.body }}
 
           {% for author in post.authors.all %}
             {{ author.author }}{% if not forloop.last %}, {% endif %}

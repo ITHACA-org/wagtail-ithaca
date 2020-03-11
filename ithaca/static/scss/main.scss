@@ -25,6 +25,25 @@
   }
 }
 
+.block-image_block {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  figure img {
+    margin-bottom: 1rem;
+  }
+}
+
+figcaption {
+  color: $gray-600;
+  font-size: 0.875rem;
+  svg {
+    margin-right: 0.25rem;
+  }
+  .fa-sm {
+    font-size: 1rem;
+  }
+}
+
 /* Search */
 
 .search {
@@ -64,5 +83,23 @@
         }
       }
     }
+  }
+}
+
+.blog {
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+  }
+  .categories {
+    @extend .list-inline;
+    color: $blue;
+    margin-top: 2rem;
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+  .lead {
+    font-size: 1.5rem;
+    margin-top: 2rem;
   }
 }

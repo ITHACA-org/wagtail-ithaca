@@ -6,13 +6,15 @@ from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
 from wagtail.core.models import Page, Orderable
-from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.search import index
 
 from wagtail.snippets.models import register_snippet
+
+from base.blocks import BaseStreamBlock
 
 @register_snippet
 class BlogCategory(models.Model):
@@ -85,14 +87,17 @@ class BlogPageAuthor(Orderable):
 class BlogPage(Page):
     date = models.DateField("Post date", blank=True, null=True)
     intro = models.CharField(max_length=250)
-    feed_image = models.ForeignKey(
-        'wagtailimages.Image',
+    image = models.ForeignKey(
+        'base.CustomImage',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+'
+        related_name='+',
+        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
     )
-    body = RichTextField(blank=True)
+    body = StreamField(
+        BaseStreamBlock(), verbose_name="Page body", blank=True
+    )
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
 
@@ -119,15 +124,11 @@ class BlogPage(Page):
             FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
         ], heading="Blog information"),
         FieldPanel('intro'),
-        FieldPanel('body'),
+        ImageChooserPanel('image'),
+        StreamFieldPanel('body'),
         InlinePanel('authors', label="Author"),
         InlinePanel('related_links', label="Related links"),
         InlinePanel('gallery_images', label="Gallery images"),
-    ]
-
-    promote_panels = [
-        MultiFieldPanel(Page.promote_panels, "Common page configuration"),
-        ImageChooserPanel('feed_image'),
     ]
 
     parent_page_types = ['blog.BlogIndexPage']
