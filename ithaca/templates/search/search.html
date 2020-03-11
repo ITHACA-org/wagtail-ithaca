@@ -1,9 +1,22 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
-
-{% block body_class %}template-searchresults{% endblock %}
+{% load static wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block title %}Search{% endblock %}
+
+{% block body_class %}search{% endblock %}
+
+{% block head-extra %}
+{% image page.image fill-1920x600 as image %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container text-left">
+    <ol class="breadcrumb">
+      <li><a href="/" aria-level="1">Home</a><span>/</span></li>
+      <li class="active" aria-level="3">Search</li>
+    </ol>
+    <h1 class="display-4">Search{% if search_results %} results{% endif %}</h1>
+  </div>
+</div>
+{% endblock head-extra %}
 
 {% block content %}
     <h1>Search</h1>

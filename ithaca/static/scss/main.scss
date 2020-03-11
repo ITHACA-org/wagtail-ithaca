@@ -11,7 +11,7 @@
   .breadcrumb {
     background: none;
     border-radius: 0;
-    margin-bottom: -1rem;
+    margin-bottom: 0;
     padding: 0;
     a {
       color: white;
@@ -20,6 +20,24 @@
       margin-left: 0.5rem;
       margin-right: 0.5rem;
     }
+  }
+}
+
+/* Search */
+
+.search {
+  .form-inline .input-group {
+    width: 100%;
+  }
+}
+
+#searchModal {
+  .modal-content {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .form-inline .input-group {
+    width: 100%;
   }
 }
 
