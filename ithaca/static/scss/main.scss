@@ -8,6 +8,19 @@
 .jumbotron {
   border-radius: 0;
   color: white;
+  .breadcrumb {
+    background: none;
+    border-radius: 0;
+    margin-bottom: -1rem;
+    padding: 0;
+    a {
+      color: white;
+    }
+    span {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  }
 }
 
 /* Pages */
