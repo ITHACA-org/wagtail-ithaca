@@ -140,6 +140,12 @@ nav.navbar {
     .nav-link {
       font-size: 8vw;
       text-align: center;
+      &:hover, &:visited, &:active {
+        border-bottom: 2px solid rgba(0,0,0,0);
+      }
+    }
+    .active > .nav-link {
+      border-bottom: 2px solid rgba(0,0,0,0);
     }
   }
   .jumbotron {

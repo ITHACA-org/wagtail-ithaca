@@ -103,3 +103,11 @@ figcaption {
     margin-top: 2rem;
   }
 }
+
+@include media-breakpoint-down(xs) {
+  .blog {
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+}
