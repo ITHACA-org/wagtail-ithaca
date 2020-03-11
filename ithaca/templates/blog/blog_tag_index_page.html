@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
 
+{% block body_class %}blog{% endblock %}
+
 {% block content %}
 
     {% if request.GET.tag|length %}
@@ -13,7 +15,7 @@
               <strong><a href="{% pageurl blogpage %}">{{ blogpage.title }}</a></strong><br />
               <small>Revised: {{ blogpage.latest_revision_created_at }}</small><br />
               {% if blogpage.author %}
-                <p>By {{ blogpage.author.profile }}</p>
+                By {{ blogpage.author.profile }}
               {% endif %}
           </p>
 

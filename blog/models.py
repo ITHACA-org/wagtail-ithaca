@@ -37,11 +37,15 @@ class BlogCategory(models.Model):
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
 
+    search_fields = Page.search_fields + [
+        index.SearchField('intro'),
+    ]
+
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
-        blogpages = self.get_children().live().order_by('-first_published_at')
-        context['blogpages'] = blogpages
+        posts = self.get_children().live().order_by('-first_published_at')
+        context['posts'] = posts
         return context
 
 class BlogPageTag(TaggedItemBase):
@@ -57,11 +61,11 @@ class BlogTagIndexPage(Page):
 
         # Filter by tag
         tag = request.GET.get('tag')
-        blogpages = BlogPage.objects.filter(tags__name=tag)
+        posts = BlogPage.objects.filter(tags__name=tag)
 
         # Update template context
         context = super().get_context(request)
-        context['blogpages'] = blogpages
+        context['posts'] = posts
         return context
 
 
@@ -79,7 +83,7 @@ class BlogPageAuthor(Orderable):
 
 
 class BlogPage(Page):
-    date = models.DateField("Post date")
+    date = models.DateField("Post date", blank=True, null=True)
     intro = models.CharField(max_length=250)
     feed_image = models.ForeignKey(
         'wagtailimages.Image',
