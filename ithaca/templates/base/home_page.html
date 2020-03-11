@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load ithaca_tags wagtailcore_tags wagtailimages_tags wagtailembeds_tags staticfiles %}
 
 {% block body_class %}home{% endblock %}
 
@@ -20,6 +20,10 @@
 
   {{ page.body }}
 
+  {% if page.featured_section_3 %}
+    {% homepage_blog_listing %}
+  {% endif %}
+
   {% if page.clients %}
   <section>
     <div class="container clients">
@@ -36,5 +40,5 @@
     </div>
   </section>
   {% endif %}
-  
+
 {% endblock %}

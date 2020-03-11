@@ -1,0 +1,23 @@
+{% load wagtailcore_tags wagtailimages_tags ithaca_tags staticfiles %}
+
+<li>
+    <a class="block-link" href="{% pageurl post %}">
+        <div class="content">
+            {% image post.feed_image fill-764x448 as background %}
+            <div class="image-container" {% if not post.colour %}style="background-image: url('{{ background.url }}');"{% endif %}></div>
+            <div class="blog-text">
+                <div id="author" class="author clearfix" >
+                    <h3>{{ post.title }}</h3>
+
+                    {% for author in post.authors.all %}
+                        <div class="name">{{ author.author.name }}{% if not forloop.last %},&nbsp;{% endif %}</div>
+                    {% endfor %}
+
+                    {% if post.date %}
+                        <span class="date">{{ post.date|date:"j F Y" }}</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
