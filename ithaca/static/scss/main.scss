@@ -1,5 +1,9 @@
+@import "fonts";
 @import "bootstrap";
 @import "navbar";
+
+/* Basics */
+
 
 /* Globals */
 
@@ -58,12 +62,14 @@ nav.navbar {
   }
 }
 
-/* Home */
+.jumbotron {
+  border-radius: 0;
+  color: white;
+}
 
+/* Pages */
 .home {
   .jumbotron {
-    border-radius: 0;
-    color: white;
     padding: 6rem 1rem;
     text-align: center;
     h1 {
