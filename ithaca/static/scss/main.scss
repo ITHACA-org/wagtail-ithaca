@@ -94,6 +94,23 @@ figcaption {
   }
 }
 
+.page {
+  .block-heading, .block-heading_block h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    &::first-letter {
+      color: $blue;
+      font-size: 4rem;
+      letter-spacing: 0.25rem;
+      line-height: 1;
+      float: left;
+      margin-bottom: -0.75rem;
+    }
+  }
+}
+
 .blog {
   h1 {
     font-size: 4rem;
