@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+{% block head-extra %}
+  {% include "base/include/head-extra.html" %}
+{% endblock head-extra %}
+
+{% block content %}
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 offset-md-1">
+        {% if page.image %}
+          <figure>
+            <figcaption><i class="far fa-image fa-sm"></i>{{ page.image.caption }}</figcaption>
+          </figure>
+        {% endif %}
+      </div>
+      <div class="col-md-5">
+        {{ page.body }}
+        <ul class="project-meta">
+            {% if page.project_type %}
+                <li>
+                    <h4>Type</h4>
+                    <p>{{ page.project_type }}</p>
+                </li>
+            {% endif %}
+            {% with elements=page.elements.all %}
+                {% if elements %}
+                    <li>
+                        <h4>Elements</h4>
+                        <ul>
+                            {% for element in elements %}
+                                <li>
+                                    {{ element.name }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endif %}
+            {% endwith %}
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <p>Menu</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

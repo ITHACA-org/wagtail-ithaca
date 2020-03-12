@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+{% block head-extra %}
+  {% include "base/include/head-extra.html" %}
+{% endblock head-extra %}
+
+{% block content %}
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 offset-md-1">
+        {% if page.image %}
+          <figure>
+            <figcaption><i class="far fa-image fa-sm"></i><small>{{ page.image.caption }}</small></figcaption>
+          </figure>
+        {% endif %}
+      </div>
+      <div class="col-md-5">
+        {{ page.body }}
+      </div>
+    </div>
+  </div>
+</section>
+  <div class="container">
+    <div class="row project-list">
+    {% for project in projects %}
+      <div class="col-12 project-list-item">
+        <div class="row align-items-center">
+          <div class="col-md-2 offset-md-2 image">
+            <a href="{% pageurl project %}">
+              {% image project.image fill-180x180-c100 as image %}
+              <!-- <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}" class="" /> -->
+              <img src="{{ image.url }}" alt="{{ image.alt }}" class="img-fluid" />
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="{% pageurl project %}">
+              <h2>{{ project.title }}</h2>
+            </a>
+            <p>{{ project.introduction }}</p>
+            <ul class="project-meta">
+              {% if project.project_type %}
+                <li><span>Type</span> {{ project.project_type }}</li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+
+{% if projects.paginator.count > 10 %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        {% include "includes/pagination.html" with subpages=projects %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% endblock content %}
