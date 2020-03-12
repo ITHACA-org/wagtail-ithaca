@@ -91,6 +91,10 @@ figcaption {
       @extend .text-center;
       margin-bottom: 2rem;
     }
+    .btn-outline-primary {
+      @extend .text-center;
+      margin-top: 2rem;
+    }
   }
   .clients {
     margin-top: 4rem;
