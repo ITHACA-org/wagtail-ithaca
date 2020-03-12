@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block body_class %}blog{% endblock %}
@@ -17,36 +16,36 @@
       </div>
     </div>
   {% endif %}
+  <div class="row">
   {% for post in posts %}
     {% with post=post.specific %}
       {% if forloop.first %}
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card mb-3">
-            <div class="row no-gutters">
-              <div class="col-md-5">
-                <a href="{% pageurl post %}">
-                  {% image post.image fill-850x450-c50 as image %}
-                  <img src="{{ image.url }}" alt="{{ image.alt }}" class="card-img" />
-                </a>
+      <div class="col-md-12">
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-5">
+              <a href="{% pageurl post %}">
+                {% image post.image fill-850x450-c50 as image %}
+                <img src="{{ image.url }}" alt="{{ image.alt }}" class="card-img" />
+              </a>
+            </div>
+            <div class="col-md-7">
+              <div class="card-body">
+                <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+                <p class="card-text">{{ post.intro|truncatewords:15 }}</p>
               </div>
-              <div class="col-md-7">
-                <div class="card-body">
-                  <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-                  <p class="card-text">{{ post.intro|truncatewords:15 }}</p>
-                  <p class="card-text">
-                    <small class="text-muted">
-                      {% for author in post.authors.all %}
-                      {{ author.author }}{% if not forloop.last %}, {% endif %}
-                      {% endfor %} on {{ post.date }}
-                    </small>
-                  </p>
-                </div>
+              <div class="card-footer">
+                <small class="text-muted">
+                  {% for author in post.authors.all %}
+                  {{ author.author }}{% if not forloop.last %}, {% endif %}
+                  {% endfor %} on {{ post.date }}
+                </small>
               </div>
             </div>
           </div>
         </div>
-        {% else %}
+      </div>
+      {% else %}
         <div class="col-md-4">
           <div class="card mb-3">
             <a href="{% pageurl post %}">
@@ -56,19 +55,19 @@
             <div class="card-body">
               <h4><a href="{% pageurl post %}">{{ post.title }}</a></h4>
               <p class="card-text">{{ post.intro|truncatewords:15 }}</p>
-              <p class="card-text">
-                <small class="text-muted">
-                  {% for author in post.authors.all %}
-                    {{ author.author }}{% if not forloop.last %}, {% endif %}
-                  {% endfor %} on {{ post.date }}
-                </small>
-              </p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">
+                {% for author in post.authors.all %}
+                  {{ author.author }}{% if not forloop.last %}, {% endif %}
+                {% endfor %} on {{ post.date }}
+              </small>
             </div>
           </div>
         </div>
         {% endif %}
       {% endwith %}
     {% endfor %}
+    </div>
   </div>
-</div>
 {% endblock %}

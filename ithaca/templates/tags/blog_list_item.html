@@ -1,23 +1,22 @@
 {% load wagtailcore_tags wagtailimages_tags ithaca_tags staticfiles %}
 
-<li>
-    <a class="block-link" href="{% pageurl post %}">
-        <div class="content">
-            {% image post.feed_image fill-764x448 as background %}
-            <div class="image-container" {% if not post.colour %}style="background-image: url('{{ background.url }}');"{% endif %}></div>
-            <div class="blog-text">
-                <div id="author" class="author clearfix" >
-                    <h3>{{ post.title }}</h3>
-
-                    {% for author in post.authors.all %}
-                        <div class="name">{{ author.author.name }}{% if not forloop.last %},&nbsp;{% endif %}</div>
-                    {% endfor %}
-
-                    {% if post.date %}
-                        <span class="date">{{ post.date|date:"j F Y" }}</span>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
+<div class="card">
+  <a href="{% pageurl post %}">
+    {% image post.image fill-425x225-c50 as image %}
+    <img src="{{ image.url }}" alt="{{ image.alt }}" class="card-img-top" />
+  </a>
+  <div class="card-body">
+    <h5 class="card-title">
+      <a href="{% pageurl post %}">{{ post.title }}</a>
+    </h5>
+    <!-- <p class="card-text">{{ post.intro|truncatewords:15 }}</p> -->
+    <p class="card-text">
+      <small class="text-muted">
+        {% for author in post.authors.all %}
+          {{ author.author.name }}{% if not forloop.last %},&nbsp;{% endif %}
+        {% endfor %}
+        {% if post.date %} on {{ post.date|date:"j F Y" }} {% endif %}
+      </small>
+    </p>
+  </div>
+</div>

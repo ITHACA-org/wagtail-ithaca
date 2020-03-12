@@ -21,13 +21,15 @@
   {{ page.body }}
 
   {% if page.featured_section_3 %}
+  <div class="container">
     {% homepage_blog_listing %}
+  </div>
   {% endif %}
 
   {% if page.clients %}
   <section>
     <div class="container clients">
-			<h3 class="text-center">{{ self.clients_title|safe }}</h3>
+			<h3>{{ self.clients_title|safe }}</h3>
       <ul class="list-inline text-center">
         {% for client in page.clients.all %}
         <li class="list-inline-item">

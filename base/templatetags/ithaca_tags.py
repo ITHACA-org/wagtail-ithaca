@@ -8,7 +8,7 @@ register = template.Library()
 
 
 @register.inclusion_tag('tags/homepage_blog_listing.html', takes_context=True)
-def homepage_blog_listing(context, count=6):
+def homepage_blog_listing(context, count=3):
     posts = BlogPage.objects.live().order_by('-date')[:count]
     return {
         'posts': posts,
