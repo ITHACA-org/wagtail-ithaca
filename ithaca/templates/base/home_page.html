@@ -20,6 +20,12 @@
 
   {{ page.body }}
 
+  {% if page.featured_section_1 %}
+  <div class="container">
+    {% homepage_projects_listing %}
+  </div>
+  {% endif %}
+
   {% if page.featured_section_3 %}
   <div class="container">
     {% homepage_blog_listing %}

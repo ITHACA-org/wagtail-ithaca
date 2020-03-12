@@ -1,0 +1,7 @@
+{% if projects %}
+  <div class="card-deck">
+    {% for project in projects %}
+      {% include "tags/projects_list_item.html" %}
+    {% endfor %}
+  </div>
+{% endif %}

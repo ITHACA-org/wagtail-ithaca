@@ -1,0 +1,13 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+    <a href="{% pageurl project %}">
+        <div class="content">
+          {% image project.image fill-425x225-c50 as image %}
+          <img src="{{ image.url }}" alt="{{ image.alt }}" class="card-img-top" />
+
+            <div>
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.intro }}</p>
+            </div>
+        </div>
+    </a>
