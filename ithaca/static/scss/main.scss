@@ -84,6 +84,14 @@ figcaption {
       }
     }
   }
+  .featured-section {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    h3 {
+      @extend .text-center;
+      margin-bottom: 2rem;
+    }
+  }
   .clients {
     margin-top: 4rem;
     margin-bottom: 4rem;

@@ -21,13 +21,15 @@
   {{ page.body }}
 
   {% if page.featured_section_1 %}
-  <div class="container">
+  <div class="container featured-section">
+    <h3>{{ page.featured_section_1.title }}</h3>
     {% homepage_projects_listing %}
   </div>
   {% endif %}
 
   {% if page.featured_section_3 %}
-  <div class="container">
+  <div class="container featured-section">
+    <h3>{{ page.featured_section_3.title }}</h3>
     {% homepage_blog_listing %}
   </div>
   {% endif %}
