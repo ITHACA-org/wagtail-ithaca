@@ -24,13 +24,15 @@
     <div class="col-md-7 offset-md-2">
       {% include "search/search_box.html" %}
       {% if search_results %}
-        <p class="pt-3">Search results for "{{ search_query }}".</p>
-        <ul>
+        <p class="pt-3">Search results.</p>
+        <ul class="list-unstyled">
           {% for result in search_results %}
             <li>
-              <a href="{% pageurl result %}">{{ result }}</a>
+              <p class="page-title"><a href="{% pageurl result %}">{{ result }}</a></p>
               {% if result.search_description %}
-                  {{ result.search_description|safe }}
+              <p>{{ result.search_description|safe|truncatewords:25 }}</p>
+              {% else %}
+              <p>{{ result.intro|safe|truncatewords:25 }}</p>
               {% endif %}
             </li>
           {% endfor %}

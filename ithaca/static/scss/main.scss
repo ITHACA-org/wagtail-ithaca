@@ -148,6 +148,13 @@ figcaption {
   }
 }
 
+.search {
+  .page-title {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+  }
+}
+
 @include media-breakpoint-down(xs) {
   .blog {
     h1 {

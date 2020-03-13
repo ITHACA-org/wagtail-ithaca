@@ -3,6 +3,6 @@
     <div class="input-group-prepend">
       <span class="input-group-text"><i class="fas fa-search"></i></span>
     </div>
-    <input type="text" name="q" class="form-control" aria-label="Search" placeholder="Search">
+    <input type="text" name="q" class="form-control" aria-label="Search" placeholder="{% if search_query %}{{ search_query }}{% else %}Search{% endif %}">
   </div>
 </form>
