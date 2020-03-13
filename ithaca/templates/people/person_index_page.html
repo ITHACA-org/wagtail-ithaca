@@ -7,15 +7,29 @@
   {% include "base/include/head-extra.html" %}
 {% endblock head-extra %}
 
+
 {% block content %}
-  {{ page.body }}
-  {% if self.senior_management.all %}
-    {{ page.senior_management_intro }}
-    {{ senior.title }}, {% if senior.role %}{{ senior.role }}{% endif %}
-  {% endif %}
-  {% if self.people.all %}
-    {% for person in self.people.all %}
-      <a href="{{ person.slug }}">{{ person.title }}</a>, {{ person.role }}
-    {% endfor %}
-  {% endif %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+    {% if page.image.caption %}
+      <figure>
+        <figcaption><i class="far fa-image fa-sm"></i>{{ page.image.caption }}</figcaption>
+      </figure>
+      {% endif %}
+    </div>
+    <div class="col-md-7">
+      {{ page.body }}
+      {% if self.senior_management.all %}
+        {{ page.senior_management_intro }}
+        {{ senior.title }}, {% if senior.role %}{{ senior.role }}{% endif %}
+      {% endif %}
+      {% if self.people.all %}
+        {% for person in self.people.all %}
+          <a href="{{ person.slug }}">{{ person.title }}</a>, {{ person.role }}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock content %}
