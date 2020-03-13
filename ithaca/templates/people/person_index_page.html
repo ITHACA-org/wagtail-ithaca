@@ -20,16 +20,75 @@
     </div>
     <div class="col-md-7">
       {{ page.body }}
-      {% if self.senior_management.all %}
-        {{ page.senior_management_intro }}
-        {{ senior.title }}, {% if senior.role %}{{ senior.role }}{% endif %}
-      {% endif %}
-      {% if self.people.all %}
-        {% for person in self.people.all %}
-          <a href="{{ person.slug }}">{{ person.title }}</a>, {{ person.role }}
-        {% endfor %}
-      {% endif %}
     </div>
   </div>
 </div>
+{% if self.senior_management.all %}
+<div class="container seniors">
+  <div class="row">
+    <div class="col-md-7 offset-md-3">
+      <h2>{{ page.senior_management_intro }}</h2>
+    </div>
+  </div>
+  <div class="row row-cols-2 row-cols-md-3">
+    {% for senior in self.senior_management.all %}
+    <div class="card h-100">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <a href="{{ senior.slug }}">
+            {% if senior.image %}
+            {% image senior.image fill-400x400 as photo %}
+            <img src="{{ photo.url }}" alt="{{ photo.alt }}" class="card-img" alt="{{ senior.title }}">
+            {% else %}
+            <img src="https://api.adorable.io/avatars/285/{{ senior.first_name }}.{{ senior.last_name }}@gmail.com.png" alt="Please change me!" class="card-img" />
+            {% endif %}
+          </a>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><a href="{{ senior.slug }}">{{ senior.title }}</a></h5>
+            <p class="card-text">{% if senior.role %}{{ senior.role }}{% endif %}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{% if self.people.all %}
+<div class="container team">
+  <div class="row">
+    <div class="col-md-7 offset-md-3">
+      <h2>{{ page.team_intro }}</h2>
+    </div>
+  </div>
+  <div class="row row-cols-2 row-cols-md-3">
+    {% for person in self.people.all %}
+    <div class="card h-100">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <a href="{{ person.slug }}">
+            {% if person.image %}
+            {% image person.image fill-400x400 as photo %}
+            <img src="{{ photo.url }}" alt="{{ photo.alt }}" class="card-img" alt="{{ person.title }}">
+            {% else %}
+            <img src="https://api.adorable.io/avatars/285/{{ person.first_name }}.{{ person.last_name }}@gmail.com.png" alt="Please change me!" class="card-img" />
+            {% endif %}
+          </a>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><a href="{{ person.slug }}">{{ person.title }}</a></h5>
+            <p class="card-text">{% if person.role %}{{ senior.role }}{% endif %}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
 {% endblock content %}

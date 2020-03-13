@@ -113,7 +113,7 @@ figcaption {
   }
 }
 
-.page {
+.page, .people {
   .block-heading, .block-heading_block h4 {
     font-size: 1.25rem;
     font-weight: 700;
@@ -126,6 +126,16 @@ figcaption {
       line-height: 1;
       float: left;
       margin-bottom: -0.75rem;
+    }
+  }
+}
+
+.people {
+  .seniors, .team {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    h2 {
+      margin-bottom: 2rem;
     }
   }
 }
