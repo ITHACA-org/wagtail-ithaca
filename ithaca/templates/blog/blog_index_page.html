@@ -66,4 +66,15 @@
     {% endfor %}
     </div>
   </div>
+
+  {% if posts.paginator.count > 10 %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          {% include "includes/pagination.html" with subpages=posts %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
 {% endblock %}

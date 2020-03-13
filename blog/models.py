@@ -1,5 +1,6 @@
 from django import forms
 from django.db import models
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -43,10 +44,30 @@ class BlogIndexPage(Page):
         index.SearchField('intro'),
     ]
 
+    # Pagination
+
+    def get_posts(self):
+        return BlogPage.objects.live().descendant_of(
+            self).order_by('-first_published_at')
+
+    def paginate(self, request, *args):
+        page = request.GET.get('page')
+        paginator = Paginator(self.get_posts(), 10)
+        try:
+            pages = paginator.page(page)
+        except PageNotAnInteger:
+            pages = paginator.page(1)
+        except EmptyPage:
+            pages = paginator.page(paginator.num_pages)
+        return pages
+
+    # End of pagination
+
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
-        posts = self.get_children().live().order_by('-first_published_at')
+        #posts = self.get_children().live().order_by('-first_published_at')
+        posts = self.paginate(request, self.get_posts())
         context['posts'] = posts
         return context
 
