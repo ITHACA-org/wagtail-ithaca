@@ -24,6 +24,10 @@
           <h1>{{ page.title }}</h1>
           <p>
             {% for author in page.authors.all %}
+              {% if author.author.image %}
+                {% image author.author.image fill-60x60 as image %}
+                <img class="avatar" src="{{ image.url }}">
+              {% endif %}
               {{ author.author.name }}{% if not forloop.last %},&nbsp;{% endif %}
             {% endfor %}
             on {{ page.date }}
@@ -32,7 +36,7 @@
       </div>
     </header>
     {% if page.image %}
-      {% image page.image fill-1920x300 as image %}
+      {% image page.image fill-1920x600 as image %}
       <img class="img-fluid" src="{{ image.url }}">
       {% endif %}
     <section>

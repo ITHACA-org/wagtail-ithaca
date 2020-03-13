@@ -1,21 +1,27 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.functional import cached_property
 
-from wagtail.core.models import Orderable, Page
-from wagtail.core.fields import StreamField
-from wagtail.core.fields import RichTextField
+from modelcluster.fields import ParentalKey
+from modelcluster.models import ClusterableModel
+
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.core.models import Collection, Orderable, Page
 from wagtail.core import blocks
-from wagtail.admin.edit_handlers import (FieldPanel, StreamFieldPanel, InlinePanel,
-                                         MultiFieldPanel, PageChooserPanel)
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.admin.edit_handlers import (FieldPanel,
+    FieldRowPanel,
+    InlinePanel,
+    MultiFieldPanel,
+    PageChooserPanel,
+    StreamFieldPanel,
+)
+from wagtail.images.edit_handlers import ImageChooserPanel
+#from wagtail.images.blocks import ImageChooserBlock
 
 from django.dispatch import receiver
 from django.utils.functional import cached_property
 
-from modelcluster.fields import ParentalKey
-
 from wagtail.core.signals import page_published
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
@@ -118,7 +124,6 @@ class PersonIndexPage(Page):
 @register_snippet
 class Author(index.Indexed, models.Model):
     person_page = models.OneToOneField('people.PersonPage', on_delete=models.SET_NULL, null=True, blank=True, related_name='+')
-
     name = models.CharField(max_length=255, blank=True)
     role = models.CharField(max_length=255, blank=True)
     image = models.ForeignKey(
