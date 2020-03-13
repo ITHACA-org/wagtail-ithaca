@@ -131,11 +131,27 @@ figcaption {
 }
 
 .people {
+  section {
+    background: $gray-100;
+    margin-top: 2rem;
+    padding: 1rem 0;
+  }
   .seniors, .team {
+    background: $gray-100;
     margin-top: 2rem;
     margin-bottom: 2rem;
     h2 {
       margin-bottom: 2rem;
+    }
+    .card {
+      border: 0;
+      border-radius: 0;
+      .card-title {
+        margin-bottom: 0;
+      }
+      .card-img {
+        border-radius: 0;
+      }
     }
   }
 }
