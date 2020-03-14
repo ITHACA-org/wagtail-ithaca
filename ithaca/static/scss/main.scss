@@ -144,13 +144,18 @@ figcaption {
       margin-bottom: 2rem;
     }
     .card {
+      @extend .mb-4;
+      background: none;
       border: 0;
       border-radius: 0;
+      .row {
+        @extend .align-items-center;
+      }
       .card-title {
         margin-bottom: 0;
       }
       .card-img {
-        border-radius: 0;
+        border-radius: 50%;
       }
     }
   }
