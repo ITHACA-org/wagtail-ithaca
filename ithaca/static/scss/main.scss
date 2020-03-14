@@ -182,6 +182,19 @@ figcaption {
   }
 }
 
+.contacts {
+  .form-group {
+    label {
+      display: block;
+      margin-bottom: 0;
+    }
+    input {
+      @extend .form-control;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
 .search {
   .page-title {
     font-size: 1.25rem;
