@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+{% block body_class %}contacts{% endblock %}
+
+{% block head-extra %}
+  {% include "base/include/head-extra.html" %}
+{% endblock head-extra %}
+
+{% block content %}
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        {{ page.body }}
+      </div>
+      <div class="col-md-6">
+        <form action="{% pageurl page %}" method="POST" role="form">
+          {% csrf_token %}
+          <div class="form-group">
+            {% for field in form %}
+              <label for="input" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>{{ field.label_tag }}{% if field.field.required %}<span class="required">*</span>{% endif %}</label>
+              {{ field }}
+              {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text|safe }}</small>
+              {% endif %}
+            {% endfor %}
+            {% if form.subject.errors %}
+              <div class="invalid-feedback" role="alertdialog">
+                {% for error in form.subject.errors %}
+                  <p>{{ error|escape }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          <input class="btn btn-primary" type="submit">
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

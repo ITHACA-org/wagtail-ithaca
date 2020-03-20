@@ -1,0 +1,55 @@
+::selection {
+  background: $warning;
+}
+::-moz-selection {
+  background: $warning;
+}
+
+.block-block_quote {
+  blockquote {
+    border-left: 6px solid $gray-200;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+    padding-top: 1rem;
+    .text {
+      color: $blue;
+      font-size: 1.25rem;
+      line-height: 2rem;
+    }
+    .text::before {
+      content: '“';
+      font-size: 4rem;
+      line-height: 0.875;
+      float: left;
+      margin-left: -0.5rem;
+      margin-bottom: -2rem;
+      margin-right: 0.5rem;
+    }
+    footer {
+      background: rgba(0,0,0,0);
+      color: $gray-600;
+      text-align: right;
+      padding-top: 0;
+      padding-bottom: 0;
+      p.attribute_name::before {
+        content: "— source: "
+      }
+    }
+  }
+}
+
+pre {
+  background: $gray-100;
+  border: 1px solid $gray-200;
+  border-left: 4px solid $orange;
+  color: $gray-700;
+  page-break-inside: avoid;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1rem 1.5rem;
+  display: block;
+  word-wrap: break-word;
+}

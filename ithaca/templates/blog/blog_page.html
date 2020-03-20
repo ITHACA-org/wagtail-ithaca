@@ -2,46 +2,76 @@
 
 {% load wagtailcore_tags wagtailimages_tags %}
 
-{% block body_class %}template-blogpage{% endblock %}
+{% block body_class %}blog{% endblock %}
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
-    <p class="meta">{{ page.date }}</p>
-
-    {% with categories=page.categories.all %}
-      {% if categories %}
-          <h3>Posted in:</h3>
-          <ul>
-              {% for category in categories %}
-                  <li style="display: inline">
-                      {% image category.icon fill-32x32 style="vertical-align: middle" %}
-                      {{ category.name }}
+<main>
+  <div class="container">
+    <header>
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          {% with categories=page.categories.all %}
+            {% if categories %}
+              <ul class="categories">
+                {% for category in categories %}
+                  <li class="list-inline-item">
+                    {{ category.name }}
                   </li>
-              {% endfor %}
-          </ul>
-      {% endif %}
-    {% endwith %}
-
-    <div class="intro">{{ page.intro }}</div>
-
-    {{ page.body|richtext }}
-
-    {% for item in page.gallery_images.all %}
-        <div style="float: left; margin: 10px">
-            {% image item.image fill-320x240 %}
-            <p>{{ item.caption }}</p>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endwith %}
+          <h1>{{ page.title }}</h1>
+          <p>
+            {% for author in page.authors.all %}
+              {% if author.author.image %}
+                {% image author.author.image fill-60x60 as image %}
+                <img class="avatar" src="{{ image.url }}">
+              {% endif %}
+              {{ author.author.name }}{% if not forloop.last %},&nbsp;{% endif %}
+            {% endfor %}
+            on {{ page.date }}
+          </p>
         </div>
-    {% endfor %}
-
-    {% if page.tags.all.count %}
-      <div class="tags">
-          <h3>Tags</h3>
-          {% for tag in page.tags.all %}
-              <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
-          {% endfor %}
       </div>
-    {% endif %}
-
-    <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
+    </header>
+    {% if page.image %}
+      {% image page.image fill-1920x600 as image %}
+      <img class="img-fluid" src="{{ image.url }}">
+      {% endif %}
+    <section>
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <p class="lead">{{ page.intro }}</p>
+        </div>
+      </div>
+    </section>
+    <article>
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <p>{{ page.body }}</p>
+        </div>
+      </div>
+    </article>
+    <aside>
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+        {% for tag in page.tags.all %}
+          <a class="btn btn-sm btn-outline-secondary" href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag }}</a>
+        {% endfor %}
+        <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
+        </div>
+      </div>
+    </aside>
+    <!-- To be removed
+    {% for item in page.gallery_images.all %}
+      <div style="float: left; margin: 10px">
+          {% image item.image fill-320x240 %}
+          <p>{{ item.caption }}</p>
+      </div>
+    {% endfor %}
+    -->
+  </div>
+</main>
 
 {% endblock %}

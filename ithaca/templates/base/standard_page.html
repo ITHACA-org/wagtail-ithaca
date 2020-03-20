@@ -1,6 +1,25 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
 
+{% block body_class %}page{% endblock %}
+
+{% block head-extra %}
+  {% include "base/include/head-extra.html" %}
+{% endblock head-extra %}
+
 {% block content %}
-  {{ page.body }}
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+    {% if page.image.caption %}
+      <figure>
+        <figcaption><i class="far fa-image fa-sm"></i>{{ page.image.caption }}</figcaption>
+      </figure>
+      {% endif %}
+    </div>
+    <div class="col-md-7">
+      {{ page.body }}
+    </div>
+  </div>
+</div>
 {% endblock content %}

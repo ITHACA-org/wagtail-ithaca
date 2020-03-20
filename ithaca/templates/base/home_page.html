@@ -1,9 +1,71 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+{% load ithaca_tags wagtailcore_tags wagtailimages_tags wagtailembeds_tags staticfiles %}
 
-{% block body_class %}template-homepage{% endblock %}
+{% block body_class %}home{% endblock %}
+
+{% block head-extra %}
+  {% image page.image fill-1920x600 as image %}
+  <div class="jumbotron" style="background-image:url('{{ image.url }}')">
+    <h1 class="display-4">{{ page.hero_text }}</h1>
+    {% if page.hero_cta_link %}
+    <p class="lead"><a href="{% pageurl page.hero_cta_link %}">{{ page.hero_cta }}</a></p>
+    {% else %}
+      {{ page.hero_cta }}
+    {% endif %}
+  </div>
+  <section>
+    <div class="container founders">
+  		<article>
+  			<header>
+  				<p class="lead text-center">ITHACA is a joint project by</p>
+  				<p class="text-center">
+            <a href="https://www.compagniadisanpaolo.it"><img src="/media/images/csp.original.png" alt="Compagnia di San Paolo"></a>
+            <a href="https://www.polito.it"><img src="/media/images/polito.original.png" alt="Politecnico di Torino"></a>
+          </p>
+  			</header>
+  		</article>
+    </div>
+  </section>
+{% endblock %}
 
 {% block content %}
+
+  <!-- No need for this now
   {{ page.body }}
+  -->
+
+  {% if page.featured_section_1 %}
+  <div class="container featured-section">
+    <h3>{{ page.featured_section_1.title }}</h3>
+    {% homepage_projects_listing %}
+    <p class="text-center"><a class="btn btn-outline-primary" href="/projects/">More {{ page.featured_section_1.title }}</a></p>
+  </div>
+  {% endif %}
+
+  {% if page.featured_section_3 %}
+  <div class="container featured-section">
+    <h3>{{ page.featured_section_3.title }}</h3>
+    {% homepage_blog_listing %}
+    <p class="text-center"><a class="btn btn-outline-primary" href="/blog/">More {{ page.featured_section_3.title }}</a></p>
+  </div>
+  {% endif %}
+
+  {% if page.clients %}
+  <section>
+    <div class="container clients">
+			<h3>{{ self.clients_title|safe }}</h3>
+      <ul class="list-inline text-center">
+        {% for client in page.clients.all %}
+        <li class="list-inline-item">
+          {% if client.link %}<a href="{{ client.link }}">{% endif %}
+            {% image client.image max-240x80 %}
+          {% if client.link %}</a>{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+
 {% endblock %}

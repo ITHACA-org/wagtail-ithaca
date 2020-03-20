@@ -1,0 +1,7 @@
+{% if posts %}
+  <div class="card-deck">
+    {% for post in posts %}
+      {% include "tags/blog_list_item.html" with post=post %}
+    {% endfor %}
+  </div>
+{% endif %}

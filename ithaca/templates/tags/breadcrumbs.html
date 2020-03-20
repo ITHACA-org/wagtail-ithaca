@@ -1,0 +1,13 @@
+{% load wagtailcore_tags %}
+
+{% if ancestors %}
+  <ol class="breadcrumb">
+    {% for ancestor in ancestors|slice:"1:" %}
+      {% if forloop.last %}
+        <li class="active" aria-level="{{ ancestors|length }}">{{ ancestor }}</li>
+      {% else %}
+        <li><a href="{% pageurl ancestor %}" aria-level="{% cycle 1 2 3 4 5 %}">{{ ancestor }}</a><span>/</span></li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+{% endif %}

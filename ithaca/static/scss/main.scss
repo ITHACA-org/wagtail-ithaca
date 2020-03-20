@@ -1,0 +1,211 @@
+@import "fonts";
+@import "bootstrap";
+@import "basics";
+@import "navbar";
+
+/* Globals */
+
+.jumbotron {
+  background-color: $gray-700;
+  background-size: cover;
+  border-radius: 0;
+  color: white;
+  .breadcrumb {
+    background: none;
+    border-radius: 0;
+    margin-bottom: 0;
+    padding: 0;
+    a {
+      color: white;
+    }
+    span {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.block-image_block {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  figure img {
+    margin-bottom: 1rem;
+  }
+}
+
+figcaption {
+  color: $gray-600;
+  font-size: 0.875rem;
+  svg {
+    margin-right: 0.25rem;
+  }
+  .fa-sm {
+    font-size: 1rem;
+  }
+}
+
+/* Search */
+
+.search {
+  .form-inline .input-group {
+    width: 100%;
+  }
+}
+
+#searchModal {
+  .modal-content {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .form-inline .input-group {
+    width: 100%;
+  }
+}
+
+/* Pages */
+.home {
+  .jumbotron {
+    padding: 6rem 1rem;
+    text-align: center;
+    h1 {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .lead {
+      margin: 2rem 0;
+      a {
+        color: white;
+        border-bottom: 1px solid white;
+        padding-bottom: 0.5rem;
+        &:hover {
+          border-bottom: 2px solid white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .founders {
+    margin-top: 4rem;
+    img {
+      max-width:240px;
+      margin: 2rem;
+    }
+  }
+  .featured-section {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    h3 {
+      @extend .text-center;
+      margin-bottom: 2rem;
+    }
+    .btn-outline-primary {
+      @extend .text-center;
+      margin-top: 2rem;
+    }
+  }
+  .clients {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    h3 {
+      @extend .text-center;
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+.page, .people {
+  .block-heading, .block-heading_block h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    &::first-letter {
+      color: $blue;
+      font-size: 4rem;
+      letter-spacing: 0.25rem;
+      line-height: 1;
+      float: left;
+      margin-bottom: -0.75rem;
+    }
+  }
+}
+
+.people {
+  section {
+    background: $gray-100;
+    margin-top: 2rem;
+    padding: 1rem 0;
+  }
+  .seniors, .team {
+    background: $gray-100;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    h2 {
+      margin-bottom: 2rem;
+    }
+    .card {
+      @extend .mb-4;
+      background: none;
+      border: 0;
+      border-radius: 0;
+      .row {
+        @extend .align-items-center;
+      }
+      .card-title {
+        margin-bottom: 0;
+      }
+      .card-img {
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.blog {
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+  }
+  .categories {
+    @extend .list-inline;
+    color: $blue;
+    margin-top: 2rem;
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+  .avatar {
+    border-radius: 50%;
+  }
+  .lead {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+}
+
+.contacts {
+  .form-group {
+    label {
+      display: block;
+      margin-bottom: 0;
+    }
+    input {
+      @extend .form-control;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.search {
+  .page-title {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  .blog {
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+}

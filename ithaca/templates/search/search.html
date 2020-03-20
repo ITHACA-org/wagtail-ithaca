@@ -1,38 +1,55 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
-
-{% block body_class %}template-searchresults{% endblock %}
+{% load static wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block title %}Search{% endblock %}
 
+{% block body_class %}search{% endblock %}
+
+{% block head-extra %}
+{% image page.image fill-1920x600 as image %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container text-left">
+    <ol class="breadcrumb">
+      <li><a href="/" aria-level="1">Home</a><span>/</span></li>
+      <li class="active" aria-level="3">Search</li>
+    </ol>
+    <h1 class="display-4">Search{% if search_results %} results{% endif %}</h1>
+  </div>
+</div>
+{% endblock head-extra %}
+
 {% block content %}
-    <h1>Search</h1>
-
-    <form action="{% url 'search' %}" method="get">
-        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-        <input type="submit" value="Search" class="button">
-    </form>
-
-    {% if search_results %}
-        <ul>
-            {% for result in search_results %}
-                <li>
-                    <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
-                    {% if result.search_description %}
-                        {{ result.search_description }}
-                    {% endif %}
-                </li>
-            {% endfor %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 offset-md-2">
+      {% include "search/search_box.html" %}
+      {% if search_results %}
+        <p class="pt-3">Search results.</p>
+        <ul class="list-unstyled">
+          {% for result in search_results %}
+            <li>
+              <p class="page-title"><a href="{% pageurl result %}">{{ result }}</a></p>
+              {% if result.search_description %}
+              <p>{{ result.search_description|safe|truncatewords:25 }}</p>
+              {% else %}
+              <p>{{ result.intro|safe|truncatewords:25 }}</p>
+              {% endif %}
+            </li>
+          {% endfor %}
         </ul>
-
         {% if search_results.has_previous %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+            <a href="{% url 'search' %}?q={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
         {% endif %}
 
         {% if search_results.has_next %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+            <a href="{% url 'search' %}?q={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
         {% endif %}
-    {% elif search_query %}
-        No results found
-    {% endif %}
+      {% elif search_query %}
+        <p class="pt-3">No results found.</p>
+      {% else %}
+        <p class="pt-3">Please type something into the search box.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block head-extra %}
+  {% include "base/include/head-extra.html" %}
+{% endblock head-extra %}
+
+{% block content %}
+<div class="container form-page-thanks">
+  <div class="row">
+    <div class="col-md-7">
+      <h3>{{ page.thank_you_text|richtext }}</h3>
+    </div>
+  </div>
+</div>
+{% endblock content %}

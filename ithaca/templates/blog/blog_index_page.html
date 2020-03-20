@@ -1,25 +1,80 @@
 {% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% block body_class %}blog{% endblock %}
 
-{% block body_class %}template-blogindexpage{% endblock %}
+{% block head-extra %}
+  {% include "base/include/head-extra.html" %}
+{% endblock head-extra %}
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
-
-    <div class="intro">{{ page.intro|richtext }}</div>
-
-    {% for post in blogpages %}
-      {% with post=post.specific %}
-          <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-
-          {% with post.main_image as main_image %}
-              {% if main_image %}{% image main_image fill-160x100 %}{% endif %}
-          {% endwith %}
-
-          <p>{{ post.intro }}</p>
-          {{ post.body|richtext }}
+<div class="container">
+  {% if page.intro %}
+    <h4>{{ page.intro }}</h4>
+  {% endif %}
+  <div class="row">
+  {% for post in posts %}
+    {% with post=post.specific %}
+      {% if forloop.first %}
+      <div class="col-md-12">
+        <div class="card mb-4">
+          <div class="row no-gutters">
+            <div class="col-md-5">
+              <a href="{% pageurl post %}">
+                {% image post.image fill-850x450-c50 as image %}
+                <img src="{{ image.url }}" alt="{{ image.alt }}" class="card-img" />
+              </a>
+            </div>
+            <div class="col-md-7">
+              <div class="card-body">
+                <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+                <p class="card-text">{{ post.intro|truncatewords:15 }}</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">
+                  {% for author in post.authors.all %}
+                  {{ author.author }}{% if not forloop.last %}, {% endif %}
+                  {% endfor %} on {{ post.date }}
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% else %}
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <a href="{% pageurl post %}">
+              {% image post.image fill-425x225-c50 as image %}
+              <img src="{{ image.url }}" alt="{{ image.alt }}" class="card-img-top" />
+            </a>
+            <div class="card-body">
+              <h4><a href="{% pageurl post %}">{{ post.title }}</a></h4>
+              <p class="card-text">{{ post.intro|truncatewords:15 }}</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">
+                {% for author in post.authors.all %}
+                  {{ author.author }}{% if not forloop.last %}, {% endif %}
+                {% endfor %} on {{ post.date }}
+              </small>
+            </div>
+          </div>
+        </div>
+        {% endif %}
       {% endwith %}
     {% endfor %}
+    </div>
+  </div>
+
+  {% if posts.paginator.count > 10 %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          {% include "includes/pagination.html" with subpages=posts %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
 
 {% endblock %}
