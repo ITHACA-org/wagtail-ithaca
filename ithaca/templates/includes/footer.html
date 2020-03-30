@@ -36,9 +36,10 @@
   </section>
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-2">
+        <a class="navbar-brand" href="/"><img class="img-fluid" src="/media/images/logo-ithaca-fw.original.png" alt="ITHACA"></a>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 offset-md-2">
         {% block main_navigation %}
           <ul class="list-unstyled">
             {# main_menu is defined in base/templatetags/navigation_tags.py #}
@@ -48,6 +49,23 @@
         {% endblock %}
       </div>
       <div class="col-md-4">
+      </div>
+    </div>
+  </div>
+  <div class="container social">
+    <div class="row">
+      <div class="col-md-6 text-left">
+        <p><i class="fas fa-phone-alt fa-lg"></i> +39 011 1975 1111</p>
+      </div>
+      <div class="col-md-6 text-right">
+        <p>Follow us on social media <a href="#"><i class="fab fa-facebook fa-2x"></i></a><a href="#"><i class="fab fa-linkedin fa-2x"></i></a><a href="#"><i class="fab fa-twitter fa-2x"></i></a></p>
+      </div>
+    </div>
+  </div>
+  <div class="container text">
+    <div class="row">
+      <div class="col-md-12">
+        <p>&copy; {% now "Y" %} ITHACA Information Technology for Humanitarian Assistance, Cooperation and action. All rights reserved. <a href="/about/privacy/">Privacy Policy</a>.</p>
       </div>
     </div>
   </div>

@@ -10160,6 +10160,9 @@ footer .joint-project {
   padding-bottom: 1.5rem;
   margin-bottom: 1.5rem;
 }
+footer .active > .nav-link {
+  border-bottom: 0;
+}
 footer .nav-link {
   border-bottom: 0;
   padding: 0.25rem 0;
@@ -10167,6 +10170,45 @@ footer .nav-link {
 footer .nav-link:hover {
   border-bottom: 0;
   padding: 0.25rem 0;
+}
+footer .text {
+  color: #f5f6f7;
+}
+footer .social {
+  color: #f5f6f7;
+  text-transform: uppercase;
+}
+footer .social .text-left i {
+  color: #197fff;
+  margin-left: -0.5rem;
+  margin-right: 0.5rem;
+}
+footer .social .text-right {
+  font-size: 0.75rem;
+}
+footer .social .text-right i {
+  margin-left: 1.5rem;
+  margin-right: -0.5rem;
+}
+footer .social a {
+  color: white;
+}
+footer .social a:hover {
+  color: #197fff;
+}
+footer .text {
+  border-top: 1px solid #a8afb7;
+  color: #a8afb7;
+  font-size: 0.75rem;
+  padding-top: 1rem;
+  text-align: center;
+}
+footer .text a {
+  color: #a8afb7;
+}
+footer .text a:hover {
+  color: white;
+  text-decoration: none;
 }
 
 /* Search */
