@@ -1,0 +1,54 @@
+{% load navigation_tags static wagtailcore_tags %}
+
+<footer>
+  <section class="joint-project">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-6 col-md-8">
+              <p>Quality certified</p>
+              <p>
+                <a href="/about/quality/">
+                  <img class="img-fluid" src="/media/images/iso-9001-ukas.original.png" alt="ISO 9001 Bureau veritas Certification">
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="offset-md-4 col-md-4">
+          <p>A joint project with</p>
+          <div class="row">
+            <div class="col-6">
+              <a href="https://www.polito.it">
+                <img class="img-fluid" src="/media/images/polito.original.png" alt="Politecnico di Torino">
+              </a>
+            </div>
+            <div class="col-6">
+              <a href="https://www.compagniadisanpaolo.it">
+                <img class="img-fluid"  src="/media/images/csp_int_affairs.original.png" alt="Compagnia di San Paolo">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
+        {% block main_navigation %}
+          <ul class="list-unstyled">
+            {# main_menu is defined in base/templatetags/navigation_tags.py #}
+            {% get_site_root as site_root %}
+            {% top_menu parent=site_root calling_page=self %}
+          </ul>
+        {% endblock %}
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+  </div>
+</footer>

@@ -44,6 +44,27 @@ figcaption {
   }
 }
 
+footer {
+  background: $gray-800;
+  padding-bottom: 2rem;
+  .joint-project {
+    background: white;
+    border-top: 1px solid $gray-200;
+    border-bottom: 8px solid $cyan;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .nav-link {
+    border-bottom: 0;
+    padding: 0.25rem 0;
+    &:hover {
+      border-bottom: 0;
+      padding: 0.25rem 0;
+    }
+  }
+}
+
 /* Search */
 
 .search {
