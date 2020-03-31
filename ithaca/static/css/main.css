@@ -10160,41 +10160,50 @@ footer .joint-project {
   padding-bottom: 1.5rem;
   margin-bottom: 1.5rem;
 }
-footer .active > .nav-link {
-  border-bottom: 0;
-}
-footer .nav-link {
-  border-bottom: 0;
-  padding: 0.25rem 0;
-}
-footer .nav-link:hover {
-  border-bottom: 0;
-  padding: 0.25rem 0;
-}
-footer .text {
-  color: #f5f6f7;
-}
 footer .social {
   color: #f5f6f7;
   text-transform: uppercase;
 }
-footer .social .text-left i {
-  color: #197fff;
-  margin-left: -0.5rem;
-  margin-right: 0.5rem;
-}
 footer .social .text-right {
   font-size: 0.75rem;
+  margin-top: 0.5rem;
 }
 footer .social .text-right i {
-  margin-left: 1.5rem;
-  margin-right: -0.5rem;
+  margin-left: 1rem;
 }
 footer .social a {
   color: white;
 }
 footer .social a:hover {
   color: #197fff;
+}
+footer .navigation {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+footer .navigation .text-left {
+  color: #f5f6f7;
+}
+footer .navigation .text-left p {
+  text-transform: uppercase;
+}
+footer .navigation .list-unstyled {
+  font-size: 0.75rem;
+}
+footer .navigation .list-unstyled li {
+  padding: 0.2rem 0;
+}
+footer .navigation .active > .nav-link {
+  border-bottom: 0;
+}
+footer .navigation .nav-link {
+  border-bottom: 0;
+  padding: 0;
+}
+footer .navigation .nav-link:hover {
+  border-bottom: 0;
+  padding: 0;
+  text-decoration: underline;
 }
 footer .text {
   border-top: 1px solid #a8afb7;

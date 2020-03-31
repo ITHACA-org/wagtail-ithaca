@@ -55,41 +55,48 @@ footer {
     padding-bottom: 1.5rem;
     margin-bottom: 1.5rem;
   }
-  .active > .nav-link {
-    border-bottom: 0;
-  }
-  .nav-link {
-    border-bottom: 0;
-    padding: 0.25rem 0;
-    &:hover {
-      border-bottom: 0;
-      padding: 0.25rem 0;
-    }
-  }
-  .text {
-    color: $gray-100;
-  }
   .social {
     color: $gray-100;
     text-transform: uppercase;
-    .text-left {
-      i {
-        color: $cyan;
-        margin-left: -0.5rem;
-        margin-right: 0.5rem;
-      }
-    }
     .text-right {
       font-size: 0.75rem;
+      margin-top: 0.5rem;
       i {
-        margin-left: 1.5rem;
-        margin-right: -0.5rem;
+        margin-left: 1rem;
       }
     }
     a {
       color: white;
       &:hover {
         color: $cyan;
+      }
+    }
+  }
+  .navigation {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    .text-left {
+      p {
+        text-transform: uppercase;
+      }
+      color: $gray-100;
+    }
+    .list-unstyled {
+      font-size: 0.75rem;
+      li {
+        padding: 0.2rem 0;
+      }
+    }
+    .active > .nav-link {
+      border-bottom: 0;
+    }
+    .nav-link {
+      border-bottom: 0;
+      padding: 0;
+      &:hover {
+        border-bottom: 0;
+        padding: 0;
+        text-decoration: underline;
       }
     }
   }

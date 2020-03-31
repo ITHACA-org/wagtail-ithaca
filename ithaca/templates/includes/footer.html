@@ -34,12 +34,20 @@
       </div>
     </div>
   </section>
-  <div class="container">
+  <div class="container social">
     <div class="row">
       <div class="col-md-2">
         <a class="navbar-brand" href="/"><img class="img-fluid" src="/media/images/logo-ithaca-fw.original.png" alt="ITHACA"></a>
       </div>
-      <div class="col-md-4 offset-md-2">
+      <div class="col-md-6 offset-md-4 text-right">
+        <p><span class="align-baseline">Follow us on social media</span> <span class="align-bottom"><a href="#"><i class="fab fa-facebook fa-2x"></i></a><a href="#"><i class="fab fa-linkedin fa-2x"></i></a><a href="#"><i class="fab fa-twitter fa-2x"></i></a></span></p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row navigation">
+      <div class="col-md-3 text-left">
+        <p>Sections</p>
         {% block main_navigation %}
           <ul class="list-unstyled">
             {# main_menu is defined in base/templatetags/navigation_tags.py #}
@@ -47,25 +55,23 @@
             {% top_menu parent=site_root calling_page=self %}
           </ul>
         {% endblock %}
+        <!-- <p><i class="fas fa-phone-alt fa-lg"></i> +39 011 1975 1111</p> -->
       </div>
-      <div class="col-md-4">
-      </div>
-    </div>
-  </div>
-  <div class="container social">
-    <div class="row">
-      <div class="col-md-6 text-left">
-        <p><i class="fas fa-phone-alt fa-lg"></i> +39 011 1975 1111</p>
-      </div>
-      <div class="col-md-6 text-right">
-        <p>Follow us on social media <a href="#"><i class="fab fa-facebook fa-2x"></i></a><a href="#"><i class="fab fa-linkedin fa-2x"></i></a><a href="#"><i class="fab fa-twitter fa-2x"></i></a></p>
+      <div class="col-md-3 text-left">
+        <p>Contact</p>
+        <ul class="list-unstyled">
+          <li>info@ithacaweb.org</li>
+          <li>+39 011 1975 1111</li>
+          <li>via P.C. Boggio 61</li>
+          <li>10138 Torino, IT</li>
+        </ul>
       </div>
     </div>
   </div>
   <div class="container text">
     <div class="row">
       <div class="col-md-12">
-        <p>&copy; {% now "Y" %} ITHACA Information Technology for Humanitarian Assistance, Cooperation and action. All rights reserved. <a href="/about/privacy/">Privacy Policy</a>.</p>
+        <p>&copy; Copyright by ITHACA Information Technology for Humanitarian Assistance, Cooperation and Action - {% now "Y" %}. <a href="/about/privacy/">Privacy Policy</a>. <a href="/about/disclaimer/">Disclaimer</a>.</p>
       </div>
     </div>
   </div>
