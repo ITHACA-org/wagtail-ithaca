@@ -1,0 +1,78 @@
+{% load navigation_tags static wagtailcore_tags %}
+
+<footer>
+  <section class="joint-project">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-6 col-md-8">
+              <p>Quality certified</p>
+              <p>
+                <a href="/about/quality/">
+                  <img class="img-fluid" src="/media/images/iso-9001-ukas.original.png" alt="ISO 9001 Bureau veritas Certification">
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="offset-md-4 col-md-4">
+          <p>A joint project with</p>
+          <div class="row">
+            <div class="col-6">
+              <a href="https://www.polito.it">
+                <img class="img-fluid" src="/media/images/polito.original.png" alt="Politecnico di Torino">
+              </a>
+            </div>
+            <div class="col-6">
+              <a href="https://www.compagniadisanpaolo.it">
+                <img class="img-fluid"  src="/media/images/csp_int_affairs.original.png" alt="Compagnia di San Paolo">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container social">
+    <div class="row">
+      <div class="col-md-2">
+        <a class="navbar-brand" href="/"><img class="img-fluid" src="/media/images/logo-ithaca-fw.original.png" alt="ITHACA"></a>
+      </div>
+      <div class="col-md-6 offset-md-4 text-right">
+        <p><span class="align-baseline">Follow us on social media</span> <span class="align-bottom"><a href="#"><i class="fab fa-facebook fa-2x"></i></a><a href="#"><i class="fab fa-linkedin fa-2x"></i></a><a href="#"><i class="fab fa-twitter fa-2x"></i></a></span></p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row navigation">
+      <div class="col-md-3 text-left">
+        <p>Sections</p>
+        {% block main_navigation %}
+          <ul class="list-unstyled">
+            {# main_menu is defined in base/templatetags/navigation_tags.py #}
+            {% get_site_root as site_root %}
+            {% top_menu parent=site_root calling_page=self %}
+          </ul>
+        {% endblock %}
+        <!-- <p><i class="fas fa-phone-alt fa-lg"></i> +39 011 1975 1111</p> -->
+      </div>
+      <div class="col-md-3 text-left">
+        <p>Contact</p>
+        <ul class="list-unstyled">
+          <li>info@ithacaweb.org</li>
+          <li>+39 011 1975 1111</li>
+          <li>via P.C. Boggio 61</li>
+          <li>10138 Torino, IT</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container text">
+    <div class="row">
+      <div class="col-md-12">
+        <p>&copy; Copyright by ITHACA Information Technology for Humanitarian Assistance, Cooperation and Action - {% now "Y" %}. <a href="/about/privacy/">Privacy Policy</a>. <a href="/about/disclaimer/">Disclaimer</a>.</p>
+      </div>
+    </div>
+  </div>
+</footer>
