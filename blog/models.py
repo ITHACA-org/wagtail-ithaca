@@ -47,8 +47,13 @@ class BlogIndexPage(Page):
     # Pagination
 
     def get_posts(self):
-        return BlogPage.objects.live().descendant_of(
-            self).order_by('-first_published_at')
+        # Get list of blog pages that are descendants of this page
+        get_posts = BlogPage.objects.live().descendant_of(self)
+
+        # Order by most recent date first
+        get_posts = get_posts.order_by('-date', 'pk')
+
+        return get_posts
 
     def paginate(self, request, *args):
         page = request.GET.get('page')
