@@ -33,8 +33,14 @@ class ProjectPage(Page):
         BaseStreamBlock(), verbose_name="Page body", blank=True
     )
 
+    is_featured = models.BooleanField(
+        default=False,
+        help_text='Featured projects will appear on the home page'
+    )
+
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname="full"),
+        FieldPanel('is_featured'),
         ImageChooserPanel('image'),
         StreamFieldPanel('body')
     ]
