@@ -182,6 +182,9 @@ footer {
       @extend .text-center;
       margin-bottom: 1.5rem;
     }
+    li.list-inline-item {
+      margin: 1rem 2rem;
+    }
   }
 }
 
