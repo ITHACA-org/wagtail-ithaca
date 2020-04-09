@@ -3,10 +3,24 @@
 
 {% block body_class %}people{% endblock %}
 
-{% block head-extra %}
-  {% include "base/include/head-extra.html" %}
-{% endblock head-extra %}
-
 {% block content %}
-  {{ page.first_name }} {{ page.last_name }}, {{ page.role }}
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 mt-5">
+      <h1>{{ page.first_name }} {{ page.last_name }}</h1>
+      <p class="lead">{{ page.role }}</p>
+      <p class="mt-5">
+        {% if page.biography %}
+          {{ page.biography | safe | linebreaks }}
+        {% else %}
+          {% lorem 3 p %}
+        {% endif %}
+      </p>
+    </div>
+    <div class="col-md-4 offset-md-1">
+      {% image page.image width-400 as image %}
+      <img src="{{ image.url }}" class="img-fluid">
+    </div>
+  </div>
+</div>
 {% endblock content %}

@@ -8,7 +8,8 @@ from modelcluster.models import ClusterableModel
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Collection, Orderable, Page
 from wagtail.core import blocks
-from wagtail.admin.edit_handlers import (FieldPanel,
+from wagtail.admin.edit_handlers import (
+    FieldPanel,
     FieldRowPanel,
     InlinePanel,
     MultiFieldPanel,
