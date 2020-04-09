@@ -237,10 +237,6 @@ footer {
 }
 
 .blog {
-  h1 {
-    font-size: 4rem;
-    font-weight: 700;
-  }
   .categories {
     @extend .list-inline;
     color: $blue;
@@ -254,6 +250,18 @@ footer {
   .lead {
     font-size: 1.5rem;
     margin-top: 2rem;
+  }
+  .card-body {
+    padding-bottom: 0;
+  }
+  .card-footer {
+    background: none;
+    border-top: 0;
+    padding: 0 1.25rem 0.75rem
+  }
+  p {
+    line-height: 2em;
+    margin-bottom: 2rem;
   }
 }
 

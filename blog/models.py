@@ -112,7 +112,7 @@ class BlogPageAuthor(Orderable):
 
 class BlogPage(Page):
     date = models.DateField("Post date", blank=True, null=True)
-    intro = models.CharField(max_length=250)
+    intro = models.CharField(max_length=250, blank=True)
     image = models.ForeignKey(
         'base.CustomImage',
         null=True,

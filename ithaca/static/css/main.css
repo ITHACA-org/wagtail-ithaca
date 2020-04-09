@@ -10322,10 +10322,6 @@ footer .text a:hover {
   border-radius: 50%;
 }
 
-.blog h1 {
-  font-size: 4rem;
-  font-weight: 700;
-}
 .blog .categories {
   color: #0063e0;
   margin-top: 2rem;
@@ -10338,6 +10334,18 @@ footer .text a:hover {
 .blog .lead {
   font-size: 1.5rem;
   margin-top: 2rem;
+}
+.blog .card-body {
+  padding-bottom: 0;
+}
+.blog .card-footer {
+  background: none;
+  border-top: 0;
+  padding: 0 1.25rem 0.75rem;
+}
+.blog p {
+  line-height: 2em;
+  margin-bottom: 2rem;
 }
 
 .contacts .form-group label {

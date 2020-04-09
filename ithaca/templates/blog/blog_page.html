@@ -25,7 +25,7 @@
           <p>
             {% for author in page.authors.all %}
               {% if author.author.image %}
-                {% image author.author.image fill-60x60 as image %}
+                {% image author.author.image fill-48x48 as image %}
                 <img class="avatar" src="{{ image.url }}">
               {% endif %}
               {{ author.author.name }}{% if not forloop.last %},&nbsp;{% endif %}
@@ -38,7 +38,15 @@
     {% if page.image %}
       {% image page.image fill-1920x600 as image %}
       <img class="img-fluid" src="{{ image.url }}">
-      {% endif %}
+    {% endif %}
+    <div class="row mt-3">
+      <div class="col-md-8 offset-md-2">
+        {% for tag in page.tags.all %}
+          <a class="btn btn-sm btn-outline-secondary" href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    {% if page.intro %}
     <section>
       <div class="row">
         <div class="col-md-8 offset-md-2">
@@ -46,6 +54,7 @@
         </div>
       </div>
     </section>
+    {% endif %}
     <article>
       <div class="row">
         <div class="col-md-8 offset-md-2">
@@ -59,7 +68,7 @@
         {% for tag in page.tags.all %}
           <a class="btn btn-sm btn-outline-secondary" href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag }}</a>
         {% endfor %}
-        <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
+          <!-- <p><a href="{{ page.get_parent.url }}" class="btn btn-outline-secondary btn-sm btn-block">Return to Blog</a></p> -->
         </div>
       </div>
     </aside>
