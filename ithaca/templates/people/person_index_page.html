@@ -23,7 +23,7 @@
     </div>
   </div>
 </div>
-<section>
+<section class="alt">
   {% if self.senior_management.all %}
     <div class="container seniors">
       <div class="row">
@@ -82,7 +82,7 @@
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title"><a href="{{ person.slug }}">{{ person.title }}</a></h5>
-              <p class="card-text">{% if person.role %}{{ senior.role }}{% endif %}</p>
+              <p class="card-text">{% if person.role %}{{ person.role }}{% endif %}</p>
             </div>
           </div>
         </div>

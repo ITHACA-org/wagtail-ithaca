@@ -205,9 +205,12 @@ footer {
   }
 }
 
+section.alt {
+  background: $gray-100;
+}
+
 .people {
   section {
-    background: $gray-100;
     margin-top: 2rem;
     padding: 1rem 0;
   }
@@ -233,6 +236,9 @@ footer {
         border-radius: 50%;
       }
     }
+  }
+  .lead {
+    color: $blue;
   }
 }
 
