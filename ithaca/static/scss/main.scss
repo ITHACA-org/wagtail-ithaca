@@ -277,6 +277,11 @@ footer {
   }
 }
 
+.pagination {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
 @include media-breakpoint-down(xs) {
   .blog {
     h1 {

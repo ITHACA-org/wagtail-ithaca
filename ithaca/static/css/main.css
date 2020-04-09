@@ -10353,6 +10353,11 @@ footer .text a:hover {
   margin-bottom: 0;
 }
 
+.pagination {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
 @media (max-width: 575.98px) {
   .blog h1 {
     font-size: 2.5rem;
