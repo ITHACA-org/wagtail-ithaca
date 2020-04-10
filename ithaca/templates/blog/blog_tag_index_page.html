@@ -25,10 +25,9 @@
             <div class="col-md-7">
               <div class="card-body">
                 <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-                <p class="card-text">{{ post.intro|truncatewords:15 }}</p>
               </div>
               <div class="card-footer">
-                <small class="text-muted">
+                <small>
                   {% for author in post.authors.all %}
                   {{ author.author }}{% if not forloop.last %}, {% endif %}
                   {% endfor %} on {{ post.date }}
@@ -47,10 +46,9 @@
           </a>
           <div class="card-body">
             <h4><a href="{% pageurl post %}">{{ post.title }}</a></h4>
-            <p class="card-text">{{ post.intro|truncatewords:15 }}</p>
           </div>
           <div class="card-footer">
-            <small class="text-muted">
+            <small>
               {% for author in post.authors.all %}
                 {{ author.author }}{% if not forloop.last %}, {% endif %}
               {% endfor %} on {{ post.date }}

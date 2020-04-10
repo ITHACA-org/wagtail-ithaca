@@ -8,39 +8,46 @@
 {% endblock head-extra %}
 
 {% block content %}
-<div class="container">
-  {% if page.intro %}
+{% if page.intro %}
+  <div class="container">
     <h4>{{ page.intro }}</h4>
-  {% endif %}
-  <div class="row">
-  {% for post in posts %}
-    {% with post=post.specific %}
-      {% if forloop.first %}
-      <div class="col-md-12">
-        <div class="card mb-4">
-          <div class="row no-gutters">
-            <div class="col-md-5">
-              <a href="{% pageurl post %}">
-                {% image post.image fill-850x450-c50 as image %}
-                <img src="{{ image.url }}" alt="{{ image.alt }}" class="card-img" />
-              </a>
-            </div>
-            <div class="col-md-7">
-              <div class="card-body">
-                <h3><a href="{% pageurl post %}">{{ post.title }}</a></h3>
+  </div>
+{% endif %}
+
+<section class="alt pt-5">
+  <div class="container">
+    {% if page.intro %}
+      <h4>{{ page.intro }}</h4>
+    {% endif %}
+    <div class="row">
+    {% for post in posts %}
+      {% with post=post.specific %}
+        {% if forloop.first %}
+        <div class="col-md-12">
+          <div class="card mb-4">
+            <div class="row no-gutters">
+              <div class="col-md-5">
+                <a href="{% pageurl post %}">
+                  {% image post.image fill-850x450-c50 as image %}
+                  <img src="{{ image.url }}" alt="{{ image.alt }}" class="card-img" />
+                </a>
               </div>
-              <div class="card-footer">
-                <small>
-                  {% for author in post.authors.all %}
-                  {{ author.author }}{% if not forloop.last %}, {% endif %}
-                  {% endfor %} on {{ post.date }}
-                </small>
+              <div class="col-md-7">
+                <div class="card-body">
+                  <h3><a href="{% pageurl post %}">{{ post.title }}</a></h3>
+                </div>
+                <div class="card-footer">
+                  <small>
+                    {% for author in post.authors.all %}
+                    {{ author.author }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %} on {{ post.date }}
+                  </small>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      {% else %}
+        {% else %}
         <div class="col-md-4 mb-4">
           <div class="card h-100">
             <a href="{% pageurl post %}">
@@ -64,15 +71,15 @@
     {% endfor %}
     </div>
   </div>
-
-  {% if posts.paginator.count > 10 %}
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          {% include "includes/pagination.html" with subpages=posts %}
-        </div>
+</section>
+{% if posts.paginator.count > 10 %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        {% include "includes/pagination.html" with subpages=posts %}
       </div>
     </div>
-  {% endif %}
+  </div>
+{% endif %}
 
 {% endblock %}
