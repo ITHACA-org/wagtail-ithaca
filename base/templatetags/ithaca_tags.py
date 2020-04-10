@@ -1,9 +1,11 @@
 from django import template
 from django.conf import settings
+from django.db import models
 
 from blog.models import BlogPage
 from people.models import PersonPage
 from projects.models import ProjectPage
+from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 register = template.Library()
 
@@ -25,3 +27,14 @@ def homepage_projects_listing(context, count=4):
         # required by the pageurl tag that we want to use within this template
         'request': context['request'],
     }
+
+@register_setting
+class SocialMediaSettings(BaseSetting):
+    facebook = models.URLField(
+        blank=True, help_text='Your Facebook page URL')
+    instagram = models.CharField(
+        blank=True, max_length=255, help_text='Your Instagram username, without the @')
+    linkedin = models.URLField(
+        blank=True, help_text='Your LinkedIn page URL')
+    twitter = models.URLField(
+        blank=True, help_text='Your Twitter page URL')
