@@ -11,13 +11,15 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-    {% image page.image fill-1920x600 as image %}
-    <img src="{{ image.url }}" class="img-fluid">
-    {% if page.image.caption %}
-      <figure>
-        <figcaption><i class="far fa-image fa-sm"></i>{{ image.caption }}</figcaption>
-      </figure>
-    {% endif %}
+      {% if page.image %}
+        {% image page.image width-400 as image %}
+        <img src="{{ image.url }}" class="img-fluid">
+        {% if page.image.caption %}
+          <figure>
+            <figcaption><i class="far fa-image fa-sm"></i>{{ image.caption }}</figcaption>
+          </figure>
+        {% endif %}
+      {% endif %}
     </div>
     <div class="col-md-7">
       {{ page.body }}
