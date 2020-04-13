@@ -11,14 +11,24 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-    {% if page.image.caption %}
-      <figure>
-        <figcaption><i class="far fa-image fa-sm"></i>{{ page.image.caption }}</figcaption>
-      </figure>
-      {% endif %}
+      <aside>
+        {% if page.image.caption %}
+          <figure>
+            <figcaption><i class="far fa-image fa-sm"></i>{{ page.image.caption }}</figcaption>
+          </figure>
+        {% endif %}
+        {% include "includes/sidebar_menu.html" %}
+      </aside>
     </div>
     <div class="col-md-7">
       {{ page.body }}
+      <div class="row">
+        <div class="col-md-12">
+          {% for page in page.get_children %}
+            <a href="{% pageurl page %}"><div class="col-md-6">{{ page.title }}</div></a>
+          {% endfor %}
+        </div>
+      </div>
     </div>
   </div>
 </div>

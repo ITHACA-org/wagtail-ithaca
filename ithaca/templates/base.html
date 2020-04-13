@@ -1,64 +1,67 @@
-{% load static wagtailuserbar %}
-
+{% load ithaca_tags cache staticfiles wagtailuserbar wagtailcore_tags wagtailimages_tags wagtailsettings_tags %}
 <!DOCTYPE html>
-<html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>
-            {% block title %}
-                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
-            {% endblock %}
-            {% block title_suffix %}
-                {% with self.get_site.site_name as site_name %}
-                    {% if site_name %}- {{ site_name }}{% endif %}
-                {% endwith %}
-            {% endblock %}
-        </title>
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% with self.get_site.site_name as site_name %}{% if site_name %}| {{ site_name }}{% endif %}{% endwith %}{% endblock %}</title>
+    <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
 
-        <script src="https://kit.fontawesome.com/af40dd63df.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ITHACA_org">
+    <meta name="twitter:creator" content="@ITHACA_org">
+    <meta name="twitter:title" content="{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %} | ITHACA">
+    <meta name="twitter:description" content="{% if self.intro %}{{ self.intro|striptags|safe }}{% elif self.search_description %}{{ self.search_description }}{% endif %}">
+    <meta name="twitter:image:src" content="{% if self.image %}{% image self.image width-400 as img %}{{ img.url }}{% endif %}" />
 
-        {% block extra_css %}
-            {# Override this in templates to add extra stylesheets #}
-        {% endblock %}
-    </head>
+    <meta property="fb:app_id" content="" /> <!-- Review this -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://{{ request.site.hostname }}{{ self.url }}" />
+    <meta property="og:title" content="{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %} | Torchbox" />
+    <meta property="og:image" content="{% if self.image %}{% image self.image width-1024 as img %}{{ img.url }}{% endif %}" />
+    <meta property="og:description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}" />
+    <meta property="og:site_name" content="ITHACA" />
 
-    <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
+    <script src="https://kit.fontawesome.com/af40dd63df.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    {% block extra_css %}
+      {# Override this in templates to add extra stylesheets #}
+    {% endblock %}
+  </head>
 
-        {% block header %}
-            {# Header contains the main_navigation block #}
-            {% include "includes/header.html" with parent=site_root calling_page=self %}
-        {% endblock header %}
+  <body class="{% block body_class %}{% endblock %}">
+    {% wagtailuserbar %}
 
-        {% block head-extra %}
-        {% endblock head-extra %}
+    {% block header %}
+      {% include "includes/header.html" with parent=site_root calling_page=self %}
+    {% endblock header %}
 
-        {% block content %}{% endblock %}
+    {% block head-extra %}
+    {% endblock head-extra %}
 
-        {% block footer %}
-            {% include "includes/footer.html" with parent=site_root calling_page=self %}
-        {% endblock footer %}
+    {% block content %}{% endblock %}
 
-        <!-- Search -->
-        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                {% include "search/search_box.html" %}
-              </div>
-            </div>
+    {% block footer %}
+      {% include "includes/footer.html" with parent=site_root calling_page=self %}
+    {% endblock footer %}
+
+    <!-- Search -->
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            {% include "search/search_box.html" %}
           </div>
         </div>
+      </div>
+    </div>
 
-        <script type="text/javascript" src="{% static 'js/jquery.slim.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/ithaca.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.slim.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/ithaca.js' %}"></script>
 
-        {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}
-    </body>
+    {% block extra_js %}
+    {% endblock %}
+
+  </body>
 </html>
