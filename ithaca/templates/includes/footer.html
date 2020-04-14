@@ -1,4 +1,4 @@
-{% load navigation_tags static wagtailcore_tags %}
+{% load navigation_tags static wagtailcore_tags wagtailsettings_tags %}
 
 <footer>
   <section class="joint-project">
@@ -36,17 +36,23 @@
   </section>
   <div class="container social">
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-6 col-md-2">
         <a class="navbar-brand" href="/"><img class="img-fluid" src="/media/images/logo-ithaca-fw.original.png" alt="ITHACA"></a>
       </div>
-      <div class="col-md-6 offset-md-4 text-right">
-        <p><span class="align-baseline">Follow us on social media</span> <span class="align-bottom"><a href="#"><i class="fab fa-facebook fa-2x"></i></a><a href="#"><i class="fab fa-linkedin fa-2x"></i></a><a href="#"><i class="fab fa-twitter fa-2x"></i></a></span></p>
+      <div class="col-6 col-md-6 offset-md-4 text-right">
+        <p><span class="align-bottom">
+          {% with social_settings=settings.base.SocialMediaSettings %}
+              <a href="{{ social_settings.facebook }}"><i class="fab fa-facebook fa-2x"></i></a>
+              <a href="{{ social_settings.linkedin }}"><i class="fab fa-linkedin fa-2x"></i></a>
+              <a href="{{ social_settings.twitter }}"><i class="fab fa-twitter fa-2x"></i></a>
+          {% endwith %}
+        </span></p>
       </div>
     </div>
   </div>
   <div class="container">
     <div class="row navigation">
-      <div class="col-md-3 text-left">
+      <div class="col-6 col-md-3 text-left">
         <p>Sections</p>
         {% block main_navigation %}
           <ul class="list-unstyled">
@@ -57,7 +63,7 @@
         {% endblock %}
         <!-- <p><i class="fas fa-phone-alt fa-lg"></i> +39 011 1975 1111</p> -->
       </div>
-      <div class="col-md-3 text-left">
+      <div class="col-6 col-md-3 text-left">
         <p>Contact</p>
         <ul class="list-unstyled">
           <li>info@ithacaweb.org</li>

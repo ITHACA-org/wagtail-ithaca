@@ -12,6 +12,8 @@ WAGTAILSEARCH_BACKENDS = {
     },
 }
 
+TAGGIT_CASE_INSENSITIVE = True
+
 try:
     from .local import *
 except ImportError:
