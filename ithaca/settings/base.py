@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'blog',
     'people',
     'projects',
+    'maps',
     'search',
 
     'wagtail.contrib.search_promotions',

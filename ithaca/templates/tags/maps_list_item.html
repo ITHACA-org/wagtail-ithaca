@@ -1,0 +1,20 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="col-md-12">
+  <div class="card mb-3" style="width: 100%;">
+    <div class="row no-gutters">
+      <div class="col-md-5">
+        <a href="{% pageurl map %}">
+          {% image map.image fill-425x225-c50 as image %}
+          <img src="{{ image.url }}" class="card-img" alt="{{ image.alt }}">
+        </a>
+      </div>
+      <div class="col-md-7">
+        <div class="card-body">
+          <h2><a href="{% pageurl map %}">{{ map.title }}</a></h2>
+          <p class="card-text">{{ map.search_description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

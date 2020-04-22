@@ -10363,6 +10363,21 @@ section.alt {
   margin-bottom: 2rem;
 }
 
+body.maps main {
+  padding-bottom: 4rem;
+}
+body.maps main header {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+body.maps main header p {
+  margin-bottom: 0;
+}
+body.maps main #map {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .contacts .form-group label {
   display: block;
   margin-bottom: 0;

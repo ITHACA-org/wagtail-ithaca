@@ -7,10 +7,11 @@ DEBUG = True
 SECRET_KEY = '00g!$7v^firp(r5!wqgv&awf2fma7q4$$fo3@ng$v8e%2r#w-%'
 
 # SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ['*'] 
+ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+MAPBOX_API_TOKEN = 'pk.eyJ1IjoicGFvbG9wYXNxdWFsaSIsImEiOiJjazliMWFzNGwwMGNoM25raWN6NHVicDQxIn0.Y5JZqszVGFxYayitC-gXIg'
 
 try:
     from .local import *

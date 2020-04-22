@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+{% block extra_css %}
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { height:420px; width: 100%; }
+</style>
+{% endblock %}
+
+{% block body_class %}maps{% endblock %}
+
+{% block content %}
+<div class="container">
+	<main>
+	  <div class="row">
+		  <div class="col-md-7 offset-md-3">
+				<header>
+					<p><a href="/maps/">Maps</a></p>
+		      <h1>{{ page.title }}</h1>
+					<p>{{ page.date }}</p>
+				</header>
+		  </div>
+			<div class="col-md-7 offset-md-3">
+				<p>{{ page.intro }}</p>
+			</div>
+	    <div id="map" class="col-md-12"></div>
+	  	<div class="col-md-7 offset-md-3">
+	    	{{ page.body }}
+	  	</div>
+	  </div>
+	</main>
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoicGFvbG9wYXNxdWFsaSIsImEiOiJoVU9zSE9VIn0.O8Cehs_li5LA2aLurdEDJQ';
+  var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/{{ page.map_style }}', // stylesheet location
+    center: [{{ page.long_lat }}], // starting position [lng, lat]
+    zoom: {{ page.zoom }} // starting zoom
+  });
+
+	var host = "teragrop.ithacaweb.org";
+  var port = "80";
+  var geoserver = "http://"+host+":"+port+"/geoserver/wms";
+  var request = '?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:3857&transparent=true&width=256&height=256&layers=';
+
+	map.on('load', function() {
+		map.addSource('{{ page.layer }}', {
+			'type': 'raster',
+			'tiles': [
+				geoserver+request+'{{ page.layer }}'
+			],
+			'tileSize': 256
+		});
+		map.addLayer(
+			{
+				'id': '{{ page.layer }}',
+				'type': 'raster',
+				'source': '{{ page.layer }}',
+				'paint': {}
+			}
+		);
+	});
+
+  // Add zoom and rotation controls to the map.
+  map.addControl(new mapboxgl.NavigationControl());
+</script>
+{% endblock %}
