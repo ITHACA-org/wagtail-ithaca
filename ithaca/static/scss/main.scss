@@ -282,6 +282,23 @@ section.alt {
   }
 }
 
+body.maps {
+  main {
+    padding-bottom: 4rem;
+    header {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      p {
+        margin-bottom: 0;
+      }
+    }
+    #map {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+}
+
 .contacts {
   .form-group {
     label {
