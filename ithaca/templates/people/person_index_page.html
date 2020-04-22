@@ -37,18 +37,16 @@
         <div class="card h-100">
           <div class="row no-gutters">
             <div class="col-md-4">
-              <a href="{{ senior.slug }}">
-                {% if senior.image %}
-                {% image senior.image fill-400x400 as photo %}
-                <img src="{{ photo.url }}" alt="{{ photo.alt }}" class="card-img" alt="{{ senior.title }}">
-                {% else %}
-                <img src="https://api.adorable.io/avatars/285/{{ senior.first_name }}.{{ senior.last_name }}@gmail.com.png" alt="Please change me!" class="card-img" />
-                {% endif %}
-              </a>
+              {% if senior.image %}
+              {% image senior.image fill-400x400 as photo %}
+              <img src="{{ photo.url }}" alt="{{ photo.alt }}" class="card-img" alt="{{ senior.title }}">
+              {% else %}
+              <img src="/media/images/user.original.png" class="card-img" alt="{{ senior.title }}" />
+              {% endif %}
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title"><a href="{{ senior.slug }}">{{ senior.title }}</a></h5>
+                <h5 class="card-title">{{ senior.title }}</h5>
                 <p class="card-text">{% if senior.role %}{{ senior.role }}{% endif %}</p>
               </div>
             </div>
@@ -76,7 +74,7 @@
               {% image person.image fill-400x400 as photo %}
               <img src="{{ photo.url }}" alt="{{ photo.alt }}" class="card-img" alt="{{ person.title }}">
               {% else %}
-              <img src="https://api.adorable.io/avatars/285/{{ person.first_name }}.{{ person.last_name }}@gmail.com.png" alt="Please change me!" class="card-img" />
+              <img src="/media/images/user.original.png" class="card-img" alt="{{ person.title }}" />
               {% endif %}
             </a>
           </div>
