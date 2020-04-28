@@ -10141,15 +10141,8 @@ figcaption {
   color: #77828e;
   font-size: 0.875rem;
 }
-figcaption svg {
+figcaption i {
   margin-right: 0.25rem;
-}
-figcaption .fa-sm {
-  font-size: 1rem;
-}
-
-aside i {
-  margin-right: 0.5rem;
 }
 
 footer {
