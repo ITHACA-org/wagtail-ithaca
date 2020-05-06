@@ -9,27 +9,30 @@
 
 {% block content %}
 <div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <aside>
-        {% if page.image.caption %}
-          <figure>
-            <figcaption><i class="far fa-image fa-sm"></i>{{ page.image.caption }}</figcaption>
-          </figure>
-        {% endif %}
-        {% include "includes/sidebar_menu.html" %}
-      </aside>
-    </div>
-    <div class="col-md-7">
-      {{ page.body }}
-      <div class="row">
-        <div class="col-md-12">
-          {% for page in page.get_children %}
-            <a href="{% pageurl page %}"><div class="col-md-6">{{ page.title }}</div></a>
+  <main>
+    <div class="row">
+      <div class="col-md-3">
+        <aside class="d-none d-sm-block">
+          {% if page.image.caption %}
+            <figure>
+              <figcaption><i class="far fa-image fa-sm"></i>{{ page.image.caption }}</figcaption>
+            </figure>
+          {% endif %}
+          {% include "includes/sidebar_menu.html" %}
+        </aside>
+      </div>
+      <div class="col-md-7">
+        {{ page.body }}
+        <div class="row">
+          {% for page in page.get_children.specific %}
+            {% image page.image width-400 as children_image %}
+            <div class="col-md-6">
+              <a class="btn btn-outline-dark btn-block page-children" style="background: url('{{ children_image.url }}')" href="{% pageurl page %}">{{ page.title }}</a>
+            </div>
           {% endfor %}
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </div>
 {% endblock content %}
