@@ -57,7 +57,7 @@ class BlogIndexPage(Page):
 
     def paginate(self, request, *args):
         page = request.GET.get('page')
-        paginator = Paginator(self.get_posts(), 10)
+        paginator = Paginator(self.get_posts(), 16)
         try:
             pages = paginator.page(page)
         except PageNotAnInteger:

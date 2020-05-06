@@ -10141,15 +10141,8 @@ figcaption {
   color: #77828e;
   font-size: 0.875rem;
 }
-figcaption svg {
+figcaption i {
   margin-right: 0.25rem;
-}
-figcaption .fa-sm {
-  font-size: 1rem;
-}
-
-aside i {
-  margin-right: 0.5rem;
 }
 
 footer {
@@ -10363,17 +10356,17 @@ section.alt {
   margin-bottom: 2rem;
 }
 
-body.maps main {
+body.maps main, body.blog main {
   padding-bottom: 4rem;
 }
-body.maps main header {
+body.maps main header, body.blog main header {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-body.maps main header p {
+body.maps main header p, body.blog main header p {
   margin-bottom: 0;
 }
-body.maps main #map {
+body.maps main #map, body.blog main #map {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
