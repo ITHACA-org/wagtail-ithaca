@@ -274,7 +274,7 @@ section.alt {
   }
 }
 
-body.maps, body.blog {
+body.page, body.maps, body.blog {
   main {
     padding-bottom: 4rem;
     header {
@@ -287,6 +287,14 @@ body.maps, body.blog {
     #map {
       margin-top: 2rem;
       margin-bottom: 2rem;
+    }
+    .page-children {
+      background-size: cover;
+      color: white;
+      margin-top: 1rem;
+      &:hover {
+        border-color: $blue;
+      }
     }
   }
 }

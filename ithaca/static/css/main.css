@@ -10719,19 +10719,27 @@ section.alt {
   margin-bottom: 2rem;
 }
 
-body.maps main, body.blog main {
+body.page main, body.maps main, body.blog main {
   padding-bottom: 4rem;
 }
-body.maps main header, body.blog main header {
+body.page main header, body.maps main header, body.blog main header {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-body.maps main header p, body.blog main header p {
+body.page main header p, body.maps main header p, body.blog main header p {
   margin-bottom: 0;
 }
-body.maps main #map, body.blog main #map {
+body.page main #map, body.maps main #map, body.blog main #map {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+body.page main .page-children, body.maps main .page-children, body.blog main .page-children {
+  background-size: cover;
+  color: white;
+  margin-top: 1rem;
+}
+body.page main .page-children:hover, body.maps main .page-children:hover, body.blog main .page-children:hover {
+  border-color: #0063e0;
 }
 
 .contacts .form-group label {
