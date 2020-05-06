@@ -3,19 +3,17 @@ window.cookieconsent.initialise({
  palette: {
   popup: {
     background: "#606c7b",
-    text: "#fff"
+    text: "#fff",
   },
   button: {background: "#0063e0"},
  },
- revokable:true,
  onStatusChange: function(status) {
   console.log(this.hasConsented() ?
    'enable cookies' : 'disable cookies');
  },
  law: {
-  regionalLaw: true,
- },
- location: true,
+     regionalLaw: false,
+    },
  type: "opt-out",
  content: {
    href: '/about/privacy/',
