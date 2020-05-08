@@ -11,12 +11,9 @@ window.cookieconsent.initialise({
   console.log(this.hasConsented() ?
    'enable cookies' : 'disable cookies');
  },
- law: {
-     regionalLaw: false,
-    },
- type: "opt-out",
  content: {
+   message: "We use our own and third-party cookies to improve your experience and our services. By continuing and using the site, including by remaining on the landing page, you consent to the use of cookies. Click here for more information on our Cookie Policy",
    href: '/about/privacy/',
-   allow: '<i class="fas fa-cookie-bite fa-lg"></i> Allow cookies',
+   dismiss: '<i class="fas fa-cookie-bite fa-lg"></i> Allow cookies',
  }
 });

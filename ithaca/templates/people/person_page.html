@@ -9,6 +9,15 @@
     <div class="col-md-7 mt-5">
       <h1>{{ page.first_name }} {{ page.last_name }}</h1>
       <p class="lead">{{ page.role }}</p>
+      {% if page.related_links %}
+        <ul class="list-inline">
+          {% for social in page.related_links.all %}
+            <li class="list-inline-item">
+              <a href="{{ social.link_external }}" target="_blank"><i class="fab fa-{{ social.title|lower }} fa-2x"></i></a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
       <p class="mt-5">
         {% if page.biography %}
           {{ page.biography | safe | linebreaks }}
