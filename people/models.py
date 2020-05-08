@@ -78,7 +78,7 @@ class PersonPage(Page, ContactFields):
         FieldPanel('short_biography', classname="full"),
         ImageChooserPanel('image'),
         MultiFieldPanel(ContactFields.panels, "Contact"),
-        InlinePanel('related_links', label="Related links"),
+        InlinePanel('related_links', label="Related social links"),
     ]
 
     promote_panels = [
