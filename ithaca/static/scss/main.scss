@@ -121,6 +121,21 @@ footer {
     width: 100%;
   }
 }
+.search {
+  .page-title {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+  }
+  .search-url {
+    color: $gray-600;
+    font-size: 0.875rem;
+    line-height: 1.25;
+  }
+  .search-description {
+    line-height: 1.25;
+    margin-top: -1rem;
+  }
+}
 
 #searchModal {
   .modal-content {
@@ -309,13 +324,6 @@ body.page, body.maps, body.blog {
       @extend .form-control;
       margin-bottom: 1rem;
     }
-  }
-}
-
-.search {
-  .page-title {
-    font-size: 1.25rem;
-    margin-bottom: 0;
   }
 }
 

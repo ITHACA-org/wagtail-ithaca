@@ -10585,6 +10585,20 @@ footer .text a:hover {
   width: 100%;
 }
 
+.search .page-title {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+.search .search-url {
+  color: #77828e;
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+.search .search-description {
+  line-height: 1.25;
+  margin-top: -1rem;
+}
+
 #searchModal .modal-content {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -10748,11 +10762,6 @@ body.page main .page-children:hover, body.maps main .page-children:hover, body.b
 }
 .contacts .form-group input {
   margin-bottom: 1rem;
-}
-
-.search .page-title {
-  font-size: 1.25rem;
-  margin-bottom: 0;
 }
 
 .pagination {

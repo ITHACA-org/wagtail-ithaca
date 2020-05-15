@@ -29,21 +29,25 @@
           {% for result in search_results %}
             <li>
               <p class="page-title"><a href="{% pageurl result %}">{{ result }}</a></p>
+              <p class="search-url">ithacaweb.org{% pageurl result %}</p>
               {% if result.search_description %}
-              <p>{{ result.search_description|safe|truncatewords:25 }}</p>
-              {% else %}
-              <p>{{ result.intro|safe|truncatewords:25 }}</p>
+              <p class="search-description">{{ result.search_description|safe|truncatewords:30 }}</p>
               {% endif %}
             </li>
           {% endfor %}
         </ul>
+        <div class="row my-5">
         {% if search_results.has_previous %}
-            <a href="{% url 'search' %}?q={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+          <div class="col-md-6">
+            <a class="btn btn-outline-dark btn-block" href="{% url 'search' %}?q={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+          </div>
         {% endif %}
-
         {% if search_results.has_next %}
-            <a href="{% url 'search' %}?q={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+        <div class="col-md-6">
+          <a class="btn btn-outline-dark btn-block" href="{% url 'search' %}?q={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+        </div>
         {% endif %}
+        </div>
       {% elif search_query %}
         <p class="pt-3">No results found.</p>
       {% else %}

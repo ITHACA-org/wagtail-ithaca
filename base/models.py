@@ -104,7 +104,7 @@ class ContactFields(models.Model):
         abstract = True
 
 class RelatedLink(LinkFields):
-    title = models.CharField(max_length=255, help_text="Link title")
+    title = models.CharField(max_length=255, help_text="Link title (e.g. Twitter, Linkedin, Github)")
 
     panels = [
         FieldPanel('title'),
@@ -305,7 +305,7 @@ class GalleryPage(Page):
         ImageChooserPanel('image'),
         FieldPanel('collection'),
     ]
-    
+
     subpage_types = []
 
 
