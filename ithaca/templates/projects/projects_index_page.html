@@ -9,25 +9,27 @@
 
 {% block content %}
 <div class="container">
-  <div class="row">
-    <div class="col-md-3">
-    {% if page.image.caption %}
-      <figure>
-        <figcaption><i class="far fa-image fa-sm"></i>{{ page.image.caption }}</figcaption>
-      </figure>
-    {% endif %}
-    </div>
-    <div class="col-md-7">
-      {{ page.body }}
-    </div>
-  </div>
-  {% if projects %}
+  <main>
     <div class="row">
-      {% for project in projects %}
-        {% include "tags/projects_list_item.html" %}
-      {% endfor %}
+      <div class="col-md-3">
+      {% if page.image.caption %}
+        <figure>
+          <figcaption><i class="far fa-image fa-sm"></i>{{ page.image.caption }}</figcaption>
+        </figure>
+      {% endif %}
+      </div>
+      <div class="col-md-7">
+        {{ page.body }}
+      </div>
     </div>
-  {% endif %}
+    {% if projects %}
+      <div class="row">
+        {% for project in projects %}
+          {% include "tags/projects_list_item.html" %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </main>
 </div>
 
 {% if projects.paginator.count > 10 %}
