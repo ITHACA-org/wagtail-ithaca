@@ -10749,6 +10749,7 @@ body.page main #map, body.maps main #map, body.blog main #map {
 }
 body.page main .page-children, body.maps main .page-children, body.blog main .page-children {
   background-size: cover;
+  background-position: center;
   color: white;
   margin-top: 1rem;
 }

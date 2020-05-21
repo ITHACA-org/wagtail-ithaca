@@ -305,6 +305,7 @@ body.page, body.maps, body.blog {
     }
     .page-children {
       background-size: cover;
+      background-position: center;
       color: white;
       margin-top: 1rem;
       &:hover {
