@@ -12,7 +12,7 @@ window.cookieconsent.initialise({
    'enable cookies' : 'disable cookies');
  },
  content: {
-   message: "We use our own and third-party cookies to improve your experience and our services. By continuing and using the site, including by remaining on the landing page, you consent to the use of cookies. Click here for more information on our Cookie Policy",
+   message: "We use our own and third-party cookies to improve your experience and our services. By using our site you agree to our Cookie Policy",
    href: '/about/privacy/',
    dismiss: '<i class="fas fa-cookie-bite fa-lg"></i> Allow cookies',
  }
