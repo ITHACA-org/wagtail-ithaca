@@ -10587,7 +10587,8 @@ footer .text a:hover {
 
 .search .page-title {
   font-size: 1.25rem;
-  margin-bottom: 0;
+  line-height: 1;
+  margin-bottom: 0.25rem;
 }
 .search .search-url {
   color: #77828e;
