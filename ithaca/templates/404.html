@@ -1,9 +1,26 @@
 {% extends "base.html" %}
+{% load static wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block body_class %}404{% endblock %}
 
-{% block content %}
-    <h1>Page not found</h1>
+{% block head-extra %}
+{% image page.image fill-1920x600 as image %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container text-left">
+    <h1 class="display-4">4<i class="far fa-surprise"></i>4: Page not found</h1>
+  </div>
+</div>
+{% endblock head-extra %}
 
-    <h2>Sorry, this page could not be found.</h2>
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 offset-md-2">
+      <p>Sorry, the page you were looking for could not be found.</p>
+      <p>It might be an old link or maybe it moved. You can try the search.</p>
+      {% include "search/search_box.html" %}
+      <p class="pt-3">Or you can return to our <a href="/">home page</a>.</p>
+    </div>
+  </div>
+</div>
 {% endblock %}
