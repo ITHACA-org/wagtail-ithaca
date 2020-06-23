@@ -8,7 +8,7 @@ embedly==0.5.0
 requests==2.20.0
 raven==6.9.0
 wagtail-django-recaptcha==1.0
-django-basic-auth-ip-whitelist==0.2.1
+django-basic-auth-ip-whitelist==0.3.4
 
 django-cors-headers==3.0.2
 
