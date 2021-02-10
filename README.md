@@ -17,7 +17,7 @@ cd wagtail
 Then run the following commands:
 ```
 git clone https://github.com/ITHACA-org/wagtail-ithaca.git
-cd ithaca
+cd wagtail-ithaca
 pip install -r requirements.txt
 python manage.py runserver 
 ```
