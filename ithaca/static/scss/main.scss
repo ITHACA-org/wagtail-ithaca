@@ -189,6 +189,50 @@ footer {
       margin-top: 2rem;
     }
   }
+}
+
+.home, .page {
+  .section-projects {
+    .row {
+      display: flex;
+      @extend .align-items-center;
+      .col-md-12 {
+        .card {
+          h2 {
+            a {
+              color: $body-color;
+              &:hover {
+                color: $link-color;
+                text-decoration: none;
+              }
+            }
+        }
+        &:nth-child(odd) {
+          .card {
+            .row {
+              @extend .d-flex;
+              @extend .flex-row;
+              @extend .align-items-center;
+              }
+            }
+          }
+        }
+        &:nth-child(even) {
+          .card {
+            .row {
+              @extend .d-flex;
+              @extend .flex-row-reverse;
+              @extend .align-items-center;
+            }
+          }
+        }
+      }
+    }
+    .card {
+      border: 0;
+
+    }
+  }
   .clients {
     margin-top: 4rem;
     margin-bottom: 4rem;
