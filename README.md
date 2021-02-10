@@ -19,5 +19,7 @@ Then run the following commands:
 git clone https://github.com/ITHACA-org/wagtail-ithaca.git
 cd wagtail-ithaca
 pip install -r requirements.txt
+python manage.py migrate
+python manage.py createsuperuser
 python manage.py runserver 
 ```
