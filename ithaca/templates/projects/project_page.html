@@ -4,7 +4,7 @@
 {% block body_class %}page{% endblock %}
 
 {% block head-extra %}
-  {% include "base/include/head-project.html" %}
+  {% include "base/include/head-extra.html" %}
 {% endblock head-extra %}
 
 {% block content %}
@@ -12,8 +12,6 @@
   <div class="row">
     <div class="col-md-3">
       {% if page.image %}
-        {% image page.image width-400 as image %}
-        <img src="{{ image.url }}" class="img-fluid mb-2">
         {% if page.image.caption %}
           <figure>
             <figcaption><i class="far fa-image fa-sm"></i>{{ page.image.caption }}</figcaption>

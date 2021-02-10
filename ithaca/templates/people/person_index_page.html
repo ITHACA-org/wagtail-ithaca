@@ -34,7 +34,7 @@
       </div>
       <div class="row row-cols-2 row-cols-md-3">
         {% for senior in self.senior_management.all %}
-        <div class="card h-100">
+        <div class="card h-100 p-3">
           <div class="row no-gutters">
             <div class="col-md-4">
               {% if senior.image %}
@@ -47,7 +47,7 @@
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title">{{ senior.title }}</h5>
-                <p class="card-text">{% if senior.role %}{{ senior.role }}{% endif %}</p>
+                <p class="card-text" style="line-height:1">{% if senior.role %}{{ senior.role }}{% endif %}{% if senior.short_biography %}<br><small>{{ senior.short_biography }}</small>{% endif %}</p>
               </div>
             </div>
           </div>

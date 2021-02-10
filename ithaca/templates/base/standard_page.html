@@ -27,7 +27,7 @@
           {% for page in page.get_children.specific %}
             {% image page.image width-400 as children_image %}
             <div class="col-md-6">
-              <a class="btn btn-outline-dark btn-block page-children py-5" style="background: url('{{ children_image.url }}')" href="{% pageurl page %}">{{ page.title }}</a>
+              <a class="btn btn-outline-dark btn-block page-children py-5" style="background-image: url('{{ children_image.url }}')" href="{% pageurl page %}">{{ page.title }}</a>
             </div>
           {% endfor %}
         </div>
