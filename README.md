@@ -5,7 +5,11 @@ This website is based on Wagtail CMS.
 
 ### Documentation
 
-[docs.wagtail.io](http://docs.wagtail.io/) is the full reference for Wagtail, and includes guides for developers, designers and editors, alongside release notes and our roadmap.
+[docs.wagtail.io](http://docs.wagtail.io/) is the full reference for Wagtail, and includes guides for developers, designers and editors, alongside release notes and the prdocut roadmap.
 
-# WIP
-Not ready for use.
+# Installation
+You can install this website in an isolated python environment.
+
+```
+virtualenv -p /usr/bin/python3 wagtail 
+```
