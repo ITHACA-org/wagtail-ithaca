@@ -13,6 +13,6 @@ django-basic-auth-ip-whitelist==0.2.1
 django-cors-headers==3.0.2
 
 wagtail-markdown==0.6
-Pygments==2.5.2  # for code highlighting in wagtail-markdown
+Pygments==2.7.4  # for code highlighting in wagtail-markdown
 wagtailfontawesome==1.2.1
 scout-apm==1.1.7
