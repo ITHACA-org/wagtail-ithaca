@@ -344,6 +344,11 @@ body.page, body.maps, body.blog {
         margin-bottom: 0;
       }
     }
+    p.intro {
+      color: $gray-600;
+      font-size: 1.25rem;
+      line-height: 1.5;
+    }
     #map {
       margin-top: 2rem;
       margin-bottom: 2rem;
