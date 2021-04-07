@@ -25,20 +25,19 @@
     <meta name="msapplication-TileImage" content="{% static 'img/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@ITHACA_org">
-    <meta name="twitter:creator" content="@ITHACA_org">
-    <meta name="twitter:title" content="{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %} | ITHACA">
-    <meta name="twitter:description" content="{% if self.intro %}{{ self.intro|striptags|safe }}{% elif self.search_description %}{{ self.search_description }}{% endif %}">
-    <meta name="twitter:image:src" content="{% if self.image %}{% image self.image width-400 as img %}{{ img.url }}{% endif %}" />
-
-    <meta property="fb:app_id" content="" /> <!-- Review this -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://{{ request.site.hostname }}{{ self.url }}" />
     <meta property="og:title" content="{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %} | ITHACA" />
     <meta property="og:image" content="{% if self.image %}{% image self.image width-1024 as img %}{{ img.url }}{% endif %}" />
     <meta property="og:description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}" />
     <meta property="og:site_name" content="ITHACA" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ITHACA_org">
+    <meta name="twitter:creator" content="@ITHACA_org">
+    <meta name="twitter:title" content="{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %} | ITHACA">
+    <meta name="twitter:description" content="{% if self.intro %}{{ self.intro|striptags|safe }}{% elif self.search_description %}{{ self.search_description }}{% endif %}">
+    <meta name="twitter:image:src" content="https://{{ request.site.hostname }}{% if self.image %}{% image self.image width-1024 as img %}{{ img.url }}{% endif %}" />
 
     <script src="https://kit.fontawesome.com/af40dd63df.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
