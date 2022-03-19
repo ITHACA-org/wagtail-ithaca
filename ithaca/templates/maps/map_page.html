@@ -2,11 +2,18 @@
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block extra_css %}
-<script src="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
-<link href="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css" rel="stylesheet" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet" />
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.css" type="text/css">
 <style>
 	body { margin: 0; padding: 0; }
-	#map { height:420px; width: 100%; }
+	.map { height:420px; width: 100%; }
+	.mapboxgl-map { height:520px; width: inherit; margin-top: : 5vh; margin-bottom: : 5vh;}
+	#comparison-container { height:520px; width: inherit; overflow:hidden; position:relative; padding-left:-15px;}
+	.comparemap {height:520px; width: 100%; position:absolute; }
+	.central-snippet{color:#004194; font-size: 1.25rem; font-style: normal; margin-top: 1.5rem; margin-bottom: 1.5rem; padding-right: 1.5rem; padding-top: 0rem; border-right: 6px solid #0063e0; line-height: 0.5;}
+	.map-caption{ color: #77828e; font-size: .875rem;}
 </style>
 {% endblock %}
 
@@ -15,60 +22,51 @@
 {% block content %}
 <div class="container">
 	<main>
-	  <div class="row">
-		  <div class="col-md-7 offset-md-3">
+	  <div class="row mw-100">
+		  <div class="col-md-9 offset-md-2">
 				<header>
-					<p><a href="/maps/">Maps</a></p>
-		      <h1>{{ page.title }}</h1>
-					<p>{{ page.date }}</p>
+					<p>
+						<a href="/maps/">Maps</a> /
+						{% with categories=page.categories.all %}
+							{% if categories %}
+								{% for category in categories %}
+									{{ category.name }}
+								{% endfor %}
+							{% endif %}
+						{% endwith %}
+					</p>
+					<h1>{{ page.title }}</h1>
+					<p>
+						{% for author in page.authors.all %}
+							{% if author.author.image %}
+								{% image author.author.image fill-48x48 as image %}
+								<img class="avatar" src="{{ image.url }}">
+							{% endif %}
+							{{ author.author.name }}{% if not forloop.last %},&nbsp;{% endif %}
+						{% endfor %}
+						on {{ page.date }}
+					</p>
 				</header>
 		  </div>
-			<div class="col-md-7 offset-md-3">
-				<p>{{ page.intro }}</p>
+			<div class="col-md-2">
+				<p class="text-right">
+					{% for tag in page.tags.all %}
+					<a class="btn btn-sm btn-outline-secondary" href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag }}</a>
+					{% endfor %}
+				</p>
 			</div>
-	    <div id="map" class="col-md-12"></div>
-	  	<div class="col-md-7 offset-md-3">
+			<div class="col-md-9 offset-md-2">
+				<p class="intro">{{ page.intro }}</p>
+			</div>
+	    <!--<div id="map" class="col-md-12 map"></div>-->
+	  	<div class="col-md-9 offset-md-2">
+				{% if page.image %}
+          {% image page.image fill-1200x600 as image %}
+          <img class="img-fluid mb-5" src="{{ image.url }}">
+        {% endif %}
 	    	{{ page.body }}
 	  	</div>
 	  </div>
 	</main>
 </div>
 {% endblock content %}
-
-{% block extra_js %}
-<script>
-	mapboxgl.accessToken = 'pk.eyJ1IjoicGFvbG9wYXNxdWFsaSIsImEiOiJoVU9zSE9VIn0.O8Cehs_li5LA2aLurdEDJQ';
-  var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/mapbox/{{ page.map_style }}', // stylesheet location
-    center: [{{ page.long_lat }}], // starting position [lng, lat]
-    zoom: {{ page.zoom }} // starting zoom
-  });
-
-	var host = "teragrop.ithacaweb.org";
-  var port = "80";
-  var geoserver = "http://"+host+":"+port+"/geoserver/wms";
-  var request = '?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:3857&transparent=true&width=256&height=256&layers=';
-
-	map.on('load', function() {
-		map.addSource('{{ page.layer }}', {
-			'type': 'raster',
-			'tiles': [
-				geoserver+request+'{{ page.layer }}'
-			],
-			'tileSize': 256
-		});
-		map.addLayer(
-			{
-				'id': '{{ page.layer }}',
-				'type': 'raster',
-				'source': '{{ page.layer }}',
-				'paint': {}
-			}
-		);
-	});
-
-  // Add zoom and rotation controls to the map.
-  map.addControl(new mapboxgl.NavigationControl());
-</script>
-{% endblock %}

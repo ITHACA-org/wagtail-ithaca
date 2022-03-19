@@ -2,6 +2,43 @@
 
 {% load wagtailcore_tags wagtailimages_tags %}
 
+<!-- Maps -->
+
+{% if page.category.name == maps %}
+{% block extra_css %}
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet" />
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.css" type="text/css">
+<style>
+body { margin: 0; padding: 0; }
+.mapboxgl-map { height:520px; width: inherit; 	margin-top: : 5vh; margin-bottom: : 5vh;}
+#comparison-container { height:520px; width: inherit; overflow:hidden; position:relative; }
+.comparemap {height:520px; width: 100%; position:absolute; }
+
+.central-snippet{
+	color:#004194;
+	font-size: 1.25rem;
+	font-style: normal;
+	/*font-weight: bold;*/
+	/*background-color: #F8F8F8 ;*/
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+	padding-right: 1.5rem;
+	padding-top: 0rem;
+	border-right: 6px solid #0063e0;
+	line-height: 0.5;
+}
+.map-caption{
+	    color: #77828e;
+	    font-size: .875rem;
+}
+</style>
+{% endblock %}
+{% endif %}
+
+<!-- /Maps -->
+
 {% block body_class %}blog{% endblock %}
 
 {% block content %}
@@ -53,4 +90,14 @@
 	  </div>
 	</main>
 </div>
+
+<!-- Maps -->
+{% if page.category.name == maps %}
+{% load static %}
+{% block scripts %}
+<script src="{% static 'js/map_1.js' %}"></script>
+{% endblock %}
+{% endif %}
+<!-- /Maps -->
+
 {% endblock %}

@@ -1,0 +1,15 @@
+{% load wagtailimages_tags %}
+
+<div id="comparison-container" class: "mapboxgl-map">
+  <div id="before" class="comparemap"></div>
+  <div id="after" class="comparemap"></div>
+</div>
+<div class="map-caption">
+  {% if self.caption and self.attribution %}
+    <i class="far fa-map fa-sm"></i>{{ self.caption }} (Credits: {{ self.attribution }})
+  {% elif self.caption %}
+    <i class="far fa-map fa-sm"></i>{{ self.caption }}
+  {% elif self.attribution %}
+    <i class="far fa-map fa-sm"></i>Credits: {{ self.attribution }}
+  {% endif %}
+</div>
