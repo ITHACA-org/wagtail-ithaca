@@ -17,4 +17,4 @@ Pygments==2.7.4  # for code highlighting in wagtail-markdown
 wagtailfontawesome==1.2.1
 scout-apm==1.1.7
 
-Wand==0.4.2 # needs imagemagick --with-liblqr for animated GIF support
+Wand==0.6.7 # needs imagemagick --with-liblqr for animated GIF support
