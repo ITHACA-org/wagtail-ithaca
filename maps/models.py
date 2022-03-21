@@ -92,32 +92,36 @@ class MapPage(Page):
     body = StreamField(
         BaseStreamBlock(), verbose_name="Page body", blank=True
     )
-    layer = models.TextField(
-        help_text='GeoServer WMS layer name',
-        blank=True)
-    map_style = models.ForeignKey('maps.MapStyle', blank=True, null=True, on_delete=models.SET_NULL)
-    long_lat = models.CharField(
-        max_length=36,
-        null=True,
-        blank=True,
-        help_text="Comma separated long/lat. (Ex. Torino is 7.676111, 45.079167)",
-        validators=[
-            RegexValidator(
-                regex=r'^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$',
-                message='Lat Long must be a comma-separated numeric long and lat',
-                code='invalid_long_lat'
-            ),
-        ]
-    )
-    zoom = models.TextField(
-        max_length=2,
-        help_text='Zoom level. Must be between 0 and 18',
-        blank=True)
+    # layer = models.TextField(
+        # help_text='GeoServer WMS layer name',
+        # blank=True)
+    # map_style = models.ForeignKey('maps.MapStyle', blank=True, null=True, on_delete=models.SET_NULL)
+    #long_lat = models.CharField(
+        #max_length=36,
+        #null=True,
+        #blank=True,
+        #help_text="Comma separated long/lat. (Ex. Torino is 7.676111, 45.079167)",
+        #validators=[
+        #    RegexValidator(
+        #        regex=r'^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$',
+        #        message='Lat Long must be a comma-separated numeric long and lat',
+        #        code='invalid_long_lat'
+        #    ),
+        #]
+    #)
+    # zoom = models.TextField(
+        # max_length=2,
+        # help_text='Zoom level. Must be between 0 and 18',
+        # blank=True)
 
     # Search index configuration
     search_fields = Page.search_fields + [
         index.SearchField('body'),
     ]
+
+    @property
+    def has_authors(self):
+        return self.authors.exists()
 
     # Fields to show to the editor in the admin view
     content_panels = [
@@ -126,10 +130,8 @@ class MapPage(Page):
         FieldPanel('date'),
         ImageChooserPanel('image'),
         StreamFieldPanel('body'),
-        FieldPanel('layer'),
-        SnippetChooserPanel('map_style'),
-        FieldPanel('long_lat'),
-        FieldPanel('zoom'),
+        InlinePanel('authors', label="Author"),
+        InlinePanel('related_links', label="Related links"),
     ]
 
     def __str__(self):
@@ -138,12 +140,34 @@ class MapPage(Page):
 
     # Makes additional context available to the template so that we can access
     # the latitude, longitude and map API key to render the map
-    def get_context(self, request):
-        context = super(MapPage, self).get_context(request)
-        context['lat'] = self.long_lat.split(",")[0]
-        context['long'] = self.long_lat.split(",")[1]
-        context['mapbox_api_token'] = settings.MAPBOX_API_TOKEN
-        return context
-
+    # def get_context(self, request):
+    #     context = super(MapPage, self).get_context(request)
+    #     context['lat'] = self.long_lat.split(",")[0]
+    #     context['long'] = self.long_lat.split(",")[1]
+    #     context['mapbox_api_token'] = settings.MAPBOX_API_TOKEN
+    #     return context
+    #
     # Can only be placed under a MapsIndexPage object
     parent_page_types = ['MapsIndexPage']
+    
+class MapPageRelatedLink(Orderable):
+    page = ParentalKey(MapPage, on_delete=models.CASCADE, related_name='related_links')
+    name = models.CharField(max_length=255)
+    url = models.URLField()
+
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('url'),
+    ]
+
+class MapPageAuthor(Orderable):
+    page = ParentalKey('maps.MapPage', related_name='authors')
+    author = models.ForeignKey(
+        'people.Author',
+        on_delete=models.CASCADE,
+        related_name='+',
+    )
+
+    panels = [
+        SnippetChooserPanel('author'),
+    ]

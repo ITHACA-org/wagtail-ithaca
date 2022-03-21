@@ -13,6 +13,13 @@
         <div class="card-body">
           <h2><a href="{% pageurl map %}">{{ map.title }}</a></h2>
           <p class="card-text">{{ map.search_description }}</p>
+          <div class="card-footer">
+            <small>
+              {% for author in map.authors.all %}
+              {{ author.author }}{% if not forloop.last %}, {% endif %}
+              {% endfor %} on {{ map.date }}
+            </small>
+          </div>
         </div>
       </div>
     </div>

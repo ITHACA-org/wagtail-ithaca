@@ -1,0 +1,10 @@
+<div id="map2" class="col-md-12 mapboxgl-map"></div>
+<div class="map-caption">
+  {% if self.caption and self.attribution %}
+    <i class="far fa-map fa-sm"></i>{{ self.caption }} (Credits: {{ self.attribution }})
+  {% elif self.caption %}
+    <i class="far fa-map fa-sm"></i>{{ self.caption }}
+  {% elif self.attribution %}
+    <i class="far fa-map fa-sm"></i>Credits: {{ self.attribution }}
+  {% endif %}
+</div>
